@@ -1,4 +1,4 @@
-package sample;
+package interface_enchere;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

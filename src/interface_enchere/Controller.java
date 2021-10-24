@@ -1,4 +1,4 @@
-package sample;
+package interface_enchere;
 
 public class Controller {
 
