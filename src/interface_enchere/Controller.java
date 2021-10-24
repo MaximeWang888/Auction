@@ -1,9 +1,9 @@
-package sample;
+package interface_enchere;
 
 public class Controller {
 
-    public void demande() {
-        System.out.println("demande");
+    public void surenchere() {
+        System.out.println("Surenchère");
     }
 
     public void vendu() {
