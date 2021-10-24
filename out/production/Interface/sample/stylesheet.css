@@ -1,0 +1,11 @@
+.root {
+    -fx-background-color: black;
+}
+
+#demandeBtn {
+    -fx-background-color: green;
+}
+
+#venduBtn {
+    -fx-background-color: red;
+}
