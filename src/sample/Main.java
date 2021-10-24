@@ -13,15 +13,18 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+
         primaryStage.getIcons().add(new Image("ventes-encheres-immobilier.jpg"));
         primaryStage.setTitle("Enchère");
-        primaryStage.setScene(new Scene(root, 600, 600, Color.BLACK));
+        Scene scene = new Scene(root, 600, 600, Color.BLACK);
+        scene.getStylesheets().add("path/stylesheet.css");
+        primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
+
 }
