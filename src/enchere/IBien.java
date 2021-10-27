@@ -1,9 +1,8 @@
 package enchere;
 
+import java.util.Date;
+
 public interface IBien {
-
     IBien consulterBien();
-
-    void surencherir(String nom, double montant, int dateActuelle);
-
+    boolean surencherir(String nom, double montant, Date dateActuelle);
 }

@@ -2,33 +2,53 @@ package bien;
 
 import enchere.IBien;
 
+import java.util.Date;
+
 public abstract class ABien implements IBien {
-
-    private IBien nature;
-
     private String description;
-
     private double montantD;
+    private double montant;
+    private Date dateD;
+    private Date dateF;
 
-    private int dateD;
-
-    private int dateF;
-
-    public ABien(IBien nature, String description, double montantD, int dateD, int dateF) {
-        this.nature = nature;
+    public ABien(String description, double montantD, Date dateD, Date dateF) {
         this.description = description;
         this.montantD = montantD;
+        this.montant = montantD;
         this.dateD = dateD;
         this.dateF = dateF;
     }
 
     @Override
-    public void surencherir(String nom, double montant, int dateActuelle) {
-        if (dateActuelle > dateD && dateActuelle < dateF)
-            System.out.println("enchère valide");
+    public IBien consulterBien() {
+        return this;
+    }
+
+    // Getters
+
+    public String getDescription() {
+        return description;
+    }
+
+    public double getMontant() {
+        return montant;
     }
 
     public double getMontantD() {
         return montantD;
+    }
+
+    public Date getDateD() {
+        return dateD;
+    }
+
+    public Date getDateF() {
+        return dateF;
+    }
+
+    // Setters
+
+    public void setMontant(double montant) {
+        this.montant = montant;
     }
 }
