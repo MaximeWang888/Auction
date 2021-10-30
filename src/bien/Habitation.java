@@ -2,27 +2,25 @@ package bien;
 
 import enchere.IBien;
 
+import java.util.Date;
+
 public class Habitation extends ABien {
+    private String ville;
+    private int nbPiece;
 
-    private String ville; // ville où est localisee l'habitation
-
-    private int taille; // nombre de pieces
-
-    public Habitation(IBien nature, String description, double montantD,
-                      int dateD, int dateF, String ville, int taille) {
-        super(nature, description, montantD, dateD, dateF);
+    public Habitation(String description, double montantD, Date dateD, Date dateF, String ville, int nbPiece) {
+        super(description, montantD, dateD, dateF);
         this.ville = ville;
-        this.taille = taille;
+        this.nbPiece = nbPiece;
     }
 
     @Override
-    public IBien consulterBien() {
-        return this;
-    }
-
-    @Override
-    public void surencherir(String nom, double montant, int dateActuelle) {
-        if (montant * 1.1 > getMontantD())
-            System.out.println("enchère valide -habitation");
+    public boolean surencherir(String nom, double montant, Date dateActuelle) {
+        // If 1st offer
+        if (getMontant() == getMontantD())
+            return dateActuelle.after(getDateD()) && dateActuelle.before(getDateF()) && montant > this.getMontant();
+        // Else
+        else
+            return dateActuelle.after(getDateD()) && dateActuelle.before(getDateF()) && montant >= this.getMontant()*1.1;
     }
 }
