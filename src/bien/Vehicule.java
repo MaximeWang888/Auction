@@ -1,7 +1,5 @@
 package bien;
 
-import enchere.IBien;
-
 import java.util.Date;
 
 public class Vehicule extends ABien {
