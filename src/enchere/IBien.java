@@ -6,6 +6,6 @@ public interface IBien {
 
     IBien consulterBien();
 
-    boolean surencherir(String nom, double montant, Date dateActuelle);
+    boolean surencherir(IBien bien, double montant, Date dateActuelle);
 
 }
