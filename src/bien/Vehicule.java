@@ -1,19 +1,22 @@
 package bien;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Vehicule extends ABien {
+
     private String marque;
+
     private int anneeFabrication;
 
-    public Vehicule(String description, double montantD, Date dateD, Date dateF, String marque, int anneeFabrication) {
+    public Vehicule(String description, double montantD, Calendar dateD, Calendar dateF, String marque, int anneeFabrication) {
         super(description, montantD, dateD, dateF);
         this.marque = marque;
         this.anneeFabrication = anneeFabrication;
     }
 
     @Override
-    public boolean surencherir(String nom, double montant, Date dateActuelle) {
-        return dateActuelle.after(getDateD()) && dateActuelle.before(getDateF()) && montant > this.getMontant();
+    protected boolean isMontantSup(double montant) {
+        return montant > this.getMontant();
     }
+
 }

@@ -2,19 +2,18 @@ package bien;
 
 import enchere.IBien;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public abstract class ABien implements IBien {
     private String description;
-    private double montantD;
     private double montant;
-    private Date dateD;
-    private Date dateF;
+    private Calendar dateD;
+    private Calendar dateF;
 
-    public ABien(String description, double montantD, Date dateD, Date dateF) {
+    public ABien(String description, double montant, Calendar dateD, Calendar dateF) {
         this.description = description;
-        this.montantD = montantD;
-        this.montant = montantD;
+        this.montant = montant;
         this.dateD = dateD;
         this.dateF = dateF;
     }
@@ -34,16 +33,12 @@ public abstract class ABien implements IBien {
         return montant;
     }
 
-    public double getMontantD() {
-        return montantD;
-    }
-
     public Date getDateD() {
-        return dateD;
+        return dateD.getTime();
     }
 
     public Date getDateF() {
-        return dateF;
+        return dateF.getTime();
     }
 
     // Setters
@@ -51,4 +46,16 @@ public abstract class ABien implements IBien {
     public void setMontant(double montant) {
         this.montant = montant;
     }
+
+    @Override
+    public boolean surencherir(IBien bien, double montant, Calendar dateActuelle) {
+        boolean isPeriodeEnchere = this.getDateD().before(dateActuelle.getTime()) &&
+                this.getDateF().after(dateActuelle.getTime());
+        boolean isMontantConforme = isMontantSup(montant);
+
+        return isPeriodeEnchere && isMontantConforme;
+    }
+
+    protected abstract boolean isMontantSup(double montant);
+
 }

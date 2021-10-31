@@ -1,0 +1,20 @@
+
+a
+java:S1301"KReplace this "switch" statement by "if" statements to increase readability.(ά•
+O
+java:S3516"9Refactor this method to not always return the same value.(†„΅¶
+C
+java:S1199"-Extract this nested code block into a method.(Ρ—έ‘
+H
+java:S1199"-Extract this nested code block into a method.(΄τ°Ίωÿÿÿÿ
+]
+java:S2259"BA "NullPointerException" could be thrown; "list" is nullable here.(”Κ²ϊÿÿÿÿ
+X
+java:S2259"BA "NullPointerException" could be thrown; "list" is nullable here.(―Ψ
+X
+java:S2259/"BA "NullPointerException" could be thrown; "list" is nullable here.(βλ»Ι
+E
+java:S2201"/The return value of "toLowerCase" must be used.(γ¶¥υ
+7	java:S131""Add a default case to this switch.(ά•
+o
+java:S3012/"YUse "Arrays.copyOf", "Arrays.asList", "Collections.addAll" or "System.arraycopy" instead.(βλ»Ι
