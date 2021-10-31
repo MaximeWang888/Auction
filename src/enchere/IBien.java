@@ -3,9 +3,12 @@ package enchere;
 import java.util.Calendar;
 
 public interface IBien {
-
     IBien consulterBien();
-
-    boolean surencherir(IBien bien, double montant, Calendar dateActuelle);
-
+    double getMontantD();
+    double getMontant();
+    Calendar getDateD();
+    Calendar getDateF();
+    void setMontant(double montant);
+    void encherir(double montant, Calendar dateActuelle) throws EncherirNotPossibleException;
+    boolean isMontantEnchereValid(double montantEnchere);
 }

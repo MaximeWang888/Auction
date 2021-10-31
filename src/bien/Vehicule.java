@@ -3,9 +3,7 @@ package bien;
 import java.util.Calendar;
 
 public class Vehicule extends ABien {
-
     private String marque;
-
     private int anneeFabrication;
 
     public Vehicule(String description, double montantD, Calendar dateD, Calendar dateF, String marque, int anneeFabrication) {
@@ -15,8 +13,10 @@ public class Vehicule extends ABien {
     }
 
     @Override
-    protected boolean isMontantSup(double montant) {
-        return montant > this.getMontant();
+    public boolean isMontantEnchereValid(double montantEnchere) {
+        if (getMontantD() == getMontant())
+            return montantEnchere >= getMontantD();
+        else
+            return montantEnchere > getMontant();
     }
-
 }

@@ -1,44 +1,47 @@
 package bien;
 
+import enchere.Encherir;
+import enchere.EncherirNotPossibleException;
 import enchere.IBien;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public abstract class ABien implements IBien {
     private String description;
+    private double montantD;
     private double montant;
     private Calendar dateD;
     private Calendar dateF;
 
-    public ABien(String description, double montant, Calendar dateD, Calendar dateF) {
+    public ABien(String description, double montantD, Calendar dateD, Calendar dateF) {
         this.description = description;
-        this.montant = montant;
+        this.montantD = montantD;
+        this.montant = montantD;
         this.dateD = dateD;
         this.dateF = dateF;
     }
+
+    // Getters
 
     @Override
     public IBien consulterBien() {
         return this;
     }
 
-    // Getters
-
-    public String getDescription() {
-        return description;
+    public double getMontantD() {
+        return montantD;
     }
 
     public double getMontant() {
         return montant;
     }
 
-    public Date getDateD() {
-        return dateD.getTime();
+    public Calendar getDateD() {
+        return dateD;
     }
 
-    public Date getDateF() {
-        return dateF.getTime();
+    public Calendar getDateF() {
+        return dateF;
     }
 
     // Setters
@@ -47,15 +50,9 @@ public abstract class ABien implements IBien {
         this.montant = montant;
     }
 
-    @Override
-    public boolean surencherir(IBien bien, double montant, Calendar dateActuelle) {
-        boolean isPeriodeEnchere = this.getDateD().before(dateActuelle.getTime()) &&
-                this.getDateF().after(dateActuelle.getTime());
-        boolean isMontantConforme = isMontantSup(montant);
+    // Methods
 
-        return isPeriodeEnchere && isMontantConforme;
+    public void encherir(double montant, Calendar dateActuelle) throws EncherirNotPossibleException {
+        new Encherir(this, montant, dateActuelle);
     }
-
-    protected abstract boolean isMontantSup(double montant);
-
 }

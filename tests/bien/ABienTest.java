@@ -1,5 +1,6 @@
 package bien;
 
+import enchere.EncherirNotPossibleException;
 import enchere.IBien;
 import fabrique.FabriqueBien;
 import fabrique.IFabrique;
@@ -18,9 +19,8 @@ public class ABienTest {
     private Calendar dateD;
     private Calendar dateF;
 
-
     @Test
-    public void surrencherirHabitationConforme() {
+    public void creerHabitation() {
         // Given
         dateD = new GregorianCalendar(2021, Calendar.OCTOBER, 1);
         dateF = new GregorianCalendar(2021, Calendar.DECEMBER, 1);
@@ -29,7 +29,26 @@ public class ABienTest {
                 "Un appartement dans le 16ème Arrondissement", 250000.0, dateD, dateF, "Paris", 5);
 
         // When
-        boolean actualRes = habitation.surencherir(habitation, 300000.0, Calendar.getInstance());
+        double montantD = habitation.getMontantD();
+        double montant = habitation.getMontant();
+
+        // Then
+        assertEquals(montantD, 250000.0);
+        assertEquals(montant, 250000.0);
+    }
+
+
+    @Test
+    public void surrencherirHabitationConforme() throws EncherirNotPossibleException {
+        // Given
+        dateD = new GregorianCalendar(2021, Calendar.OCTOBER, 1);
+        dateF = new GregorianCalendar(2021, Calendar.DECEMBER, 1);
+
+        habitation = fabrique.fabriqueBien("habitation",
+                "Un appartement dans le 16ème Arrondissement", 250000.0, dateD, dateF, "Paris", 5);
+
+        // When
+        boolean actualRes = habitation.encherir(300000.0, Calendar.getInstance()).;
 
         // Then
         assertEquals(true, actualRes);
