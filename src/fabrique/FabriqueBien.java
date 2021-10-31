@@ -4,7 +4,8 @@ import bien.Habitation;
 import bien.Vehicule;
 import enchere.IBien;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -21,13 +22,13 @@ public class FabriqueBien implements IFabrique {
 
             case "habitation": {
                 List<Object> list = getAttributs(attributs);
-                return new Habitation((String) list.get(0), (double) list.get(1), (Date) list.get(2),
-                        (Date) list.get(3), (String) list.get(4), (int) list.get(5));
+                return new Habitation((String) list.get(0), (double) list.get(1), (Calendar) list.get(2),
+                        (Calendar) list.get(3), (String) list.get(4), (int) list.get(5));
             }
             case "vehicule" : {
                 List<Object> list = getAttributs(attributs);
-                return new Vehicule((String) list.get(0), (double) list.get(1), (Date) list.get(2),
-                        (Date) list.get(3), (String) list.get(4), (int) list.get(5));
+                return new Vehicule((String) list.get(0), (double) list.get(1), (Calendar) list.get(2),
+                        (Calendar) list.get(3), (String) list.get(4), (int) list.get(5));
             }
         }
 
@@ -42,7 +43,7 @@ public class FabriqueBien implements IFabrique {
     }
 
     private List<Object> getAttributs(Object[] attributs) {
-        List<Object> list = null;
+        List<Object> list = new ArrayList<>();
         for (Object attribut : attributs) {
             list.add(attribut);
         }

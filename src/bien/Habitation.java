@@ -1,6 +1,6 @@
 package bien;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Habitation extends ABien {
 
@@ -8,7 +8,7 @@ public class Habitation extends ABien {
 
     private int nbPiece;
 
-    public Habitation(String description, double montantD, Date dateD, Date dateF, String ville, int nbPiece) {
+    public Habitation(String description, double montantD, Calendar dateD, Calendar dateF, String ville, int nbPiece) {
         super(description, montantD, dateD, dateF);
         this.ville = ville;
         this.nbPiece = nbPiece;
