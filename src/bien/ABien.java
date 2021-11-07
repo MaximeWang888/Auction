@@ -1,61 +1,63 @@
 package bien;
 
 import enchere.IBien;
+import utilisateurs.Client;
+import utilisateurs.IUtilisateur;
 
 import java.util.Calendar;
 import java.util.Date;
 
 public abstract class ABien implements IBien {
     private String description;
+    private double montantD;
     private double montant;
+    private IUtilisateur dernierEncherisseur;
     private Calendar dateD;
     private Calendar dateF;
 
-    public ABien(String description, double montant, Calendar dateD, Calendar dateF) {
+    public ABien(String description, double montantD, Calendar dateD, Calendar dateF) {
         this.description = description;
-        this.montant = montant;
+        this.montantD = montantD;
+        this.montant = montantD;
+        this.dernierEncherisseur = null;
         this.dateD = dateD;
         this.dateF = dateF;
     }
+
+    // Getters
 
     @Override
     public IBien consulterBien() {
         return this;
     }
 
-    // Getters
-
-    public String getDescription() {
-        return description;
-    }
-
     public double getMontant() {
         return montant;
     }
 
-    public Date getDateD() {
-        return dateD.getTime();
+    public IUtilisateur getDernierEncherisseur() {
+        return dernierEncherisseur;
     }
 
-    public Date getDateF() {
-        return dateF.getTime();
-    }
-
-    // Setters
-
-    public void setMontant(double montant) {
-        this.montant = montant;
-    }
+    // Methods
 
     @Override
-    public boolean surencherir(IBien bien, double montant, Calendar dateActuelle) {
-        boolean isPeriodeEnchere = this.getDateD().before(dateActuelle.getTime()) &&
-                this.getDateF().after(dateActuelle.getTime());
-        boolean isMontantConforme = isMontantSup(montant);
-
-        return isPeriodeEnchere && isMontantConforme;
+    public void surencherir(IUtilisateur encherisseur, double montant) throws EnchereNotPossibleException {
+        try {
+            isSurencherirPossible(montant);
+            this.montant = montant;
+            this.dernierEncherisseur = encherisseur;
+        } catch (Exception e) {
+            throw new EnchereNotPossibleException("L'enchère n'est pas possible.");
+        }
     }
 
-    protected abstract boolean isMontantSup(double montant);
+    public boolean isSurencherirPossible(double montant) {
+        return isPeriodeOK() && isMontantOK(montant);
+    }
+
+    public boolean isPeriodeOK() {
+        return this.dateD.before(Calendar.getInstance().getTime()) && this.dateF.after(Calendar.getInstance().getTime());
+    }
 
 }

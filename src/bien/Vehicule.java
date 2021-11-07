@@ -15,8 +15,11 @@ public class Vehicule extends ABien {
     }
 
     @Override
-    protected boolean isMontantSup(double montant) {
-        return montant > this.getMontant();
+    public boolean isMontantOK(double montant) {
+        if (this.getDernierEncherisseur() == null)
+            return montant >= this.getMontant();
+        else
+            return montant > this.getMontant();
     }
 
 }
