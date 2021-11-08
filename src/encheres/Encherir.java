@@ -1,14 +1,15 @@
 package encheres;
 
 import biens.IBien;
-import conditions.isMontantValid;
-import conditions.isPeriodeValid;
+import conditions.IsMontantValid;
+import conditions.IsPeriodeValid;
 import utilisateurs.IUtilisateur;
 
 public class Encherir {
     private IBien bien;
     private double montant;
     private IUtilisateur enrichisseur;
+    // TODO créer attribut IsPeriodeValid et IsMontantValid
 
     public Encherir(IBien bien, double montant, IUtilisateur enrichisseur) throws EncherirNotPossibleException {
         this.bien = bien;
@@ -19,7 +20,7 @@ public class Encherir {
     }
 
     public void encherir() throws EncherirNotPossibleException {
-        if (new isPeriodeValid(bien).isConditionRespected() && new isMontantValid(bien, montant).isConditionRespected()) {
+        if (new IsPeriodeValid(bien).isConditionRespected() && new IsMontantValid(bien, montant).isConditionRespected()) {
             bien.setMontant(montant);
             bien.setDernierEncherisseur(enrichisseur);
         }

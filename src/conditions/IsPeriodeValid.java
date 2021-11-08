@@ -4,9 +4,9 @@ import biens.IBien;
 
 import java.util.Calendar;
 
-public class isPeriodeValid extends ACondition {
+public class IsPeriodeValid extends ACondition {
 
-    public isPeriodeValid(IBien bien) {
+    public IsPeriodeValid(IBien bien) {
         super(bien);
     }
 

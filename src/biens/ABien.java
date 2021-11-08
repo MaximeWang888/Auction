@@ -6,6 +6,7 @@ import encheres.Encherir;
 import encheres.EncherirNotPossibleException;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public abstract class ABien implements IBien {
     private String description;
@@ -43,12 +44,12 @@ public abstract class ABien implements IBien {
         return dernierEncherisseur;
     }
 
-    public Calendar getDateD() {
-        return dateD;
+    public Date getDateD() {
+        return dateD.getTime();
     }
 
-    public Calendar getDateF() {
-        return dateF;
+    public Date getDateF() {
+        return dateF.getTime();
     }
 
     // Setters

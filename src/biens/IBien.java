@@ -4,14 +4,15 @@ import encheres.EncherirNotPossibleException;
 import utilisateurs.IUtilisateur;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public interface IBien {
     IBien getBien();
     double getMontantD();
     double getMontant();
     IUtilisateur getDernierEncherisseur();
-    Calendar getDateD();
-    Calendar getDateF();
+    Date getDateD();
+    Date getDateF();
     void setMontant(double montant);
     void setDernierEncherisseur(IUtilisateur dernierEncherisseur);
     void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException;
