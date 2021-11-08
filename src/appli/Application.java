@@ -1,4 +1,4 @@
-package enchere;
+package appli;
 
 public class Application {
 

@@ -1,8 +1,8 @@
-package bien;
+package biens;
 
-import enchere.Encherir;
-import enchere.EncherirNotPossibleException;
-import enchere.IBien;
+import utilisateurs.IUtilisateur;
+import encheres.Encherir;
+import encheres.EncherirNotPossibleException;
 
 import java.util.Calendar;
 
@@ -10,6 +10,7 @@ public abstract class ABien implements IBien {
     private String description;
     private double montantD;
     private double montant;
+    private IUtilisateur dernierEncherisseur;
     private Calendar dateD;
     private Calendar dateF;
 
@@ -17,6 +18,7 @@ public abstract class ABien implements IBien {
         this.description = description;
         this.montantD = montantD;
         this.montant = montantD;
+        this.dernierEncherisseur = null;
         this.dateD = dateD;
         this.dateF = dateF;
     }
@@ -24,7 +26,7 @@ public abstract class ABien implements IBien {
     // Getters
 
     @Override
-    public IBien consulterBien() {
+    public IBien getBien() {
         return this;
     }
 
@@ -34,6 +36,10 @@ public abstract class ABien implements IBien {
 
     public double getMontant() {
         return montant;
+    }
+
+    public IUtilisateur getDernierEncherisseur() {
+        return dernierEncherisseur;
     }
 
     public Calendar getDateD() {
@@ -50,9 +56,13 @@ public abstract class ABien implements IBien {
         this.montant = montant;
     }
 
+    public void setDernierEncherisseur(IUtilisateur dernierEncherisseur) {
+        this.dernierEncherisseur = dernierEncherisseur;
+    }
+
     // Methods
 
-    public void encherir(double montant, Calendar dateActuelle) throws EncherirNotPossibleException {
-        new Encherir(this, montant, dateActuelle);
+    public void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException {
+        new Encherir(this, montant, encherisseur);
     }
 }

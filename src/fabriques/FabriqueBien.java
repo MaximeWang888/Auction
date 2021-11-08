@@ -1,8 +1,8 @@
-package fabrique;
+package fabriques;
 
-import bien.Habitation;
-import bien.Vehicule;
-import enchere.IBien;
+import biens.Habitation;
+import biens.Vehicule;
+import biens.IBien;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -1,4 +1,4 @@
-package bien;
+package biens;
 
 import java.util.Calendar;
 
@@ -14,7 +14,7 @@ public class Vehicule extends ABien {
 
     @Override
     public boolean isMontantEnchereValid(double montantEnchere) {
-        if (getMontantD() == getMontant())
+        if (getDernierEncherisseur() == null)
             return montantEnchere >= getMontantD();
         else
             return montantEnchere > getMontant();

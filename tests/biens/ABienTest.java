@@ -1,9 +1,8 @@
-package bien;
+package biens;
 
-import enchere.EncherirNotPossibleException;
-import enchere.IBien;
-import fabrique.FabriqueBien;
-import fabrique.IFabrique;
+import encheres.EncherirNotPossibleException;
+import fabriques.FabriqueBien;
+import fabriques.IFabrique;
 import org.junit.Test;
 
 import java.util.Calendar;
