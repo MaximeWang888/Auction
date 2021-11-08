@@ -1,5 +1,6 @@
 package biens;
 
+import fraisGestion.AFraisGestion;
 import utilisateurs.IUtilisateur;
 import encheres.Encherir;
 import encheres.EncherirNotPossibleException;
@@ -64,5 +65,9 @@ public abstract class ABien implements IBien {
 
     public void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException {
         new Encherir(this, montant, encherisseur);
+    }
+
+    public double consulterFraisGestion() {
+        return AFraisGestion.fraisGestionActuel().calculFraisGestion(this);
     }
 }
