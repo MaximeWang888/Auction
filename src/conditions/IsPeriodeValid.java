@@ -13,6 +13,6 @@ public class IsPeriodeValid extends ACondition {
     @Override
     public boolean isConditionRespected() {
         return bien.getDateD().before(Calendar.getInstance().getTime()) &&
-                bien.getDateF().before(Calendar.getInstance().getTime());
+                bien.getDateF().after(Calendar.getInstance().getTime());
     }
 }
