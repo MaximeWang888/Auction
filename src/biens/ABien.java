@@ -1,7 +1,8 @@
 package biens;
 
-import fraisGestion.AFraisGestion;
-import utilisateurs.IUtilisateur;
+import encheres.interfaces.IBien;
+import encheres.interfaces.IFraisGestion;
+import encheres.interfaces.IUtilisateur;
 import encheres.Encherir;
 import encheres.EncherirNotPossibleException;
 
@@ -15,14 +16,16 @@ public abstract class ABien implements IBien {
     private IUtilisateur dernierEncherisseur;
     private Calendar dateD;
     private Calendar dateF;
+    private IFraisGestion fraisGestion;
 
-    public ABien(String description, double montantD, Calendar dateD, Calendar dateF) {
+    public ABien(String description, double montantD, Calendar dateD, Calendar dateF, IFraisGestion fraisGestion) {
         this.description = description;
         this.montantD = montantD;
         this.montant = montantD;
         this.dernierEncherisseur = null;
         this.dateD = dateD;
         this.dateF = dateF;
+        this.fraisGestion = fraisGestion;
     }
 
     // Getters
@@ -52,14 +55,18 @@ public abstract class ABien implements IBien {
         return dateF.getTime();
     }
 
-    // Setters
 
+    // Setters
     public void setMontant(double montant) {
         this.montant = montant;
     }
 
     public void setDernierEncherisseur(IUtilisateur dernierEncherisseur) {
         this.dernierEncherisseur = dernierEncherisseur;
+    }
+
+    public void setFraisGestion(IFraisGestion fraisGestion) {
+        this.fraisGestion = fraisGestion;
     }
 
     // Methods
@@ -69,6 +76,6 @@ public abstract class ABien implements IBien {
     }
 
     public double consulterFraisGestion() {
-        return AFraisGestion.fraisGestionActuel().calculFraisGestion(this);
+        return fraisGestion.fraisGestionActuel(this);
     }
 }

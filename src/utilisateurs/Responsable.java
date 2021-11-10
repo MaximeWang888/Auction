@@ -1,14 +1,15 @@
 package utilisateurs;
 
-import fraisGestion.AFraisGestion;
-import fraisGestion.IFraisGestion;
+import encheres.interfaces.IBien;
 
 public class Responsable extends AUtilisateur {
+
     public Responsable(String nomUtilisateur) {
         super(nomUtilisateur);
     }
 
-    public IFraisGestion consulterFraisGestion() {
-        return AFraisGestion.fraisGestionActuel();
+    public double consulterFraisGestion(IBien bien) {
+        return bien.consulterFraisGestion();
     }
+
 }

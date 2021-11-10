@@ -1,13 +1,16 @@
 package biens;
 
+import encheres.interfaces.IFraisGestion;
+
 import java.util.Calendar;
 
 public class Habitation extends ABien {
     private String ville;
     private int nbPiece;
 
-    public Habitation(String description, double montantD, Calendar dateD, Calendar dateF, String ville, int nbPiece) {
-        super(description, montantD, dateD, dateF);
+    public Habitation(String description, double montantD, Calendar dateD, Calendar dateF, IFraisGestion fraisGestion,
+                      String ville, int nbPiece) {
+        super(description, montantD, dateD, dateF, fraisGestion);
         this.ville = ville;
         this.nbPiece = nbPiece;
     }

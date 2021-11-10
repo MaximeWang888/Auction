@@ -1,14 +1,17 @@
 package utilisateurs;
 
-import biens.IBien;
+import biens.BiensDeApplication;
+import encheres.interfaces.IBien;
 import encheres.EncherirNotPossibleException;
+import encheres.interfaces.IUtilisateur;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class AUtilisateur implements IUtilisateur {
     private String nomUtilisateur;
     private HashMap<IBien, Double> biensSurencheris;
-    private HashMap<IBien, Double> biensAchetes;
+    private HashMap<IBien, Double> biensAchetes; // liste des biens acquis par cette utilisateur
 
     public AUtilisateur(String nomUtilisateur) {
         this.nomUtilisateur = nomUtilisateur;
@@ -17,6 +20,10 @@ public class AUtilisateur implements IUtilisateur {
     }
 
     // Getters
+
+    public String getNomUtilisateur() {
+        return nomUtilisateur;
+    }
 
     public HashMap<IBien, Double> getBiensSurencheris() {
         return biensSurencheris;
@@ -29,8 +36,9 @@ public class AUtilisateur implements IUtilisateur {
 
     // Methods
 
-    public void consulterBien() {
-        // TODO implement method
+    @Override
+    public List<IBien> consulterBiens() {
+        return BiensDeApplication.getBiens();
     }
 
     public void surencherir(IBien bien, double montant) throws EncherirNotPossibleException {
@@ -39,4 +47,5 @@ public class AUtilisateur implements IUtilisateur {
             biensSurencheris.put(bien, montant);
         } catch (Exception e) {}
     }
+
 }

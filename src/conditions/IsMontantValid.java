@@ -1,6 +1,6 @@
 package conditions;
 
-import biens.IBien;
+import encheres.interfaces.IBien;
 
 public class IsMontantValid extends ACondition {
     private double montant;

@@ -1,10 +1,11 @@
 package fraisGestion;
 
-import biens.IBien;
+import encheres.interfaces.IBien;
 
 import java.util.Calendar;
 
 public class FraisGestion10et5 extends AFraisGestion {
+
     @Override
     public double calculFraisGestion(IBien bien) {
         // Si le bien est vendu
@@ -13,4 +14,5 @@ public class FraisGestion10et5 extends AFraisGestion {
         else
             return bien.getMontant()*0.05;
     }
+
 }

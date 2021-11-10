@@ -1,6 +1,4 @@
-package fabriques;
-
-import biens.IBien;
+package encheres.interfaces;
 
 public interface IFabrique {
 

@@ -1,6 +1,6 @@
 package conditions;
 
-import biens.IBien;
+import encheres.interfaces.IBien;
 
 import java.util.Calendar;
 
