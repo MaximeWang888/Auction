@@ -2,7 +2,9 @@ package fabriques;
 
 import biens.Habitation;
 import biens.Vehicule;
-import biens.IBien;
+import encheres.interfaces.IBien;
+import encheres.interfaces.IFabrique;
+import encheres.interfaces.IFraisGestion;
 
 import java.util.*;
 
@@ -20,12 +22,12 @@ public class FabriqueBien implements IFabrique {
             case "habitation": {
                 List<Object> list = getAttributs(attributs);
                 return new Habitation((String) list.get(0), (double) list.get(1), (Calendar) list.get(2),
-                        (Calendar) list.get(3), (String) list.get(4), (int) list.get(5));
+                        (Calendar) list.get(3), (IFraisGestion) list.get(4), (String) list.get(5), (int) list.get(6));
             }
             case "vehicule" : {
                 List<Object> list = getAttributs(attributs);
                 return new Vehicule((String) list.get(0), (double) list.get(1), (Calendar) list.get(2),
-                        (Calendar) list.get(3), (String) list.get(4), (int) list.get(5));
+                        (Calendar) list.get(3), (IFraisGestion) list.get(4), (String) list.get(5), (int) list.get(6));
             }
         }
 

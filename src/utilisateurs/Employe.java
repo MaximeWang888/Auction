@@ -1,7 +1,8 @@
 package utilisateurs;
 
-import biens.IBien;
-import fabriques.IFabrique;
+import biens.BiensDeApplication;
+import encheres.interfaces.IBien;
+import encheres.interfaces.IFabrique;
 
 public class Employe extends AUtilisateur {
     private IFabrique fabrique;
@@ -12,6 +13,11 @@ public class Employe extends AUtilisateur {
     }
 
     public IBien inscrireBien(String type, Object... attributs) {
-        return fabrique.fabriqueBien(type, attributs);
+        IBien bienCreer = fabrique.fabriqueBien(type, attributs);
+
+        BiensDeApplication.setBien(bienCreer);
+
+        return bienCreer;
     }
+
 }

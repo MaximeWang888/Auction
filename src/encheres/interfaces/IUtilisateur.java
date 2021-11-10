@@ -1,13 +1,18 @@
-package utilisateurs;
+package encheres.interfaces;
 
-import biens.IBien;
 import encheres.EncherirNotPossibleException;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface IUtilisateur {
+
     HashMap<IBien, Double> getBiensSurencheris();
+
     HashMap<IBien, Double> getBiensAchetes();
-    void consulterBien();
+
+    List<IBien> consulterBiens();
+
     void surencherir(IBien bien, double montant) throws EncherirNotPossibleException;
+
 }

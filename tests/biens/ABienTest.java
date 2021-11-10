@@ -1,8 +1,9 @@
 package biens;
 
 import encheres.EncherirNotPossibleException;
+import encheres.interfaces.IBien;
 import fabriques.FabriqueBien;
-import fabriques.IFabrique;
+import encheres.interfaces.IFabrique;
 import org.junit.Test;
 import utilisateurs.Employe;
 

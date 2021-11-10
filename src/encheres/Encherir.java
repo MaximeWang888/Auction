@@ -1,15 +1,15 @@
 package encheres;
 
-import biens.IBien;
 import conditions.IsMontantValid;
 import conditions.IsPeriodeValid;
-import utilisateurs.IUtilisateur;
+import encheres.interfaces.IBien;
+import encheres.interfaces.IUtilisateur;
 
 public class Encherir {
     private IBien bien;
     private double montant;
     private IUtilisateur enrichisseur;
-    // TODO créer attribut IsPeriodeValid et IsMontantValid
+
 
     public Encherir(IBien bien, double montant, IUtilisateur enrichisseur) throws EncherirNotPossibleException {
         this.bien = bien;
