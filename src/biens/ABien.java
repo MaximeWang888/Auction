@@ -3,7 +3,7 @@ package biens;
 import encheres.interfaces.IBien;
 import encheres.interfaces.IFraisGestion;
 import encheres.interfaces.IUtilisateur;
-import encheres.Encherir;
+import encheres.Enchere;
 import encheres.EncherirNotPossibleException;
 
 import java.util.Calendar;
@@ -72,7 +72,7 @@ public abstract class ABien implements IBien {
     // Methods
 
     public void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException {
-        new Encherir(this, montant, encherisseur);
+        new Enchere(this, montant, encherisseur);
     }
 
     public double consulterFraisGestion() {

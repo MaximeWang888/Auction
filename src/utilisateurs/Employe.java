@@ -2,12 +2,12 @@ package utilisateurs;
 
 import biens.BiensDeApplication;
 import encheres.interfaces.IBien;
-import encheres.interfaces.IFabrique;
+import encheres.interfaces.fabriques.IFabriqueBien;
 
 public class Employe extends AUtilisateur {
-    private IFabrique fabrique;
+    private IFabriqueBien fabrique;
 
-    public Employe(String nomUtilisateur, IFabrique fabrique) {
+    public Employe(String nomUtilisateur, IFabriqueBien fabrique) {
         super(nomUtilisateur);
         this.fabrique = fabrique;
     }

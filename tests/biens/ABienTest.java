@@ -3,7 +3,7 @@ package biens;
 import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IBien;
 import fabriques.FabriqueBien;
-import encheres.interfaces.IFabrique;
+import encheres.interfaces.fabriques.IFabriqueBien;
 import org.junit.Test;
 import utilisateurs.Employe;
 
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ABienTest {
 
-    private IFabrique fabrique = new FabriqueBien();
+    private IFabriqueBien fabrique = new FabriqueBien();
     private Calendar dateD = new GregorianCalendar(2021, Calendar.OCTOBER, 1);
     private Calendar dateF = new GregorianCalendar(2021, Calendar.DECEMBER, 1);
     private Employe e = new Employe("Hervé", new FabriqueBien());
