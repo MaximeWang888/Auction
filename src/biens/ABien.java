@@ -8,27 +8,35 @@ import encheres.EncherirNotPossibleException;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public abstract class ABien implements IBien {
     private String description;
     private double montantD;
     private double montant;
-    private IUtilisateur dernierEncherisseur;
     private Calendar dateD;
     private Calendar dateF;
     private IFraisGestion fraisGestion;
+    private HashMap<IUtilisateur, Double> surencheresEnregistrees;
+
 
     public ABien(String description, double montantD, Calendar dateD, Calendar dateF, IFraisGestion fraisGestion) {
         this.description = description;
         this.montantD = montantD;
         this.montant = montantD;
-        this.dernierEncherisseur = null;
         this.dateD = dateD;
         this.dateF = dateF;
         this.fraisGestion = fraisGestion;
+        this.surencheresEnregistrees = new HashMap<>();
     }
 
+
     // Getters
+
+    @Override
+    public double getMontant() {
+        return montant;
+    }
 
     @Override
     public IBien getBien() {
@@ -38,15 +46,6 @@ public abstract class ABien implements IBien {
     public double getMontantD() {
         return montantD;
     }
-
-    public double getMontant() {
-        return montant;
-    }
-
-    public IUtilisateur getDernierEncherisseur() {
-        return dernierEncherisseur;
-    }
-
     public Date getDateD() {
         return dateD.getTime();
     }
@@ -55,18 +54,24 @@ public abstract class ABien implements IBien {
         return dateF.getTime();
     }
 
+    public HashMap<IUtilisateur, Double> getSurencheresEnregistrees() {
+        return surencheresEnregistrees;
+    }
+
+
 
     // Setters
+
     public void setMontant(double montant) {
         this.montant = montant;
     }
 
-    public void setDernierEncherisseur(IUtilisateur dernierEncherisseur) {
-        this.dernierEncherisseur = dernierEncherisseur;
-    }
-
     public void setFraisGestion(IFraisGestion fraisGestion) {
         this.fraisGestion = fraisGestion;
+    }
+
+    public void setSurencheresEnregistrees(IUtilisateur utilisateur, double montant) {
+        this.surencheresEnregistrees.put(utilisateur, montant);
     }
 
     // Methods

@@ -22,7 +22,6 @@ public class Enchere {
     public void encherir() throws EncherirNotPossibleException {
         if (new IsPeriodeValid(bien).isConditionRespected() && new IsMontantValid(bien, montant).isConditionRespected()) {
             bien.setMontant(montant);
-            bien.setDernierEncherisseur(enrichisseur);
         }
         else
             throw new EncherirNotPossibleException("L'enchère n'a pas pu aboutir. Veuillez vérifier le montant et la date de l'enchère.");

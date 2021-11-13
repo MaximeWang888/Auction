@@ -2,7 +2,6 @@ package utilisateurs;
 
 import biens.BiensDeApplication;
 import encheres.interfaces.IBien;
-import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IUtilisateur;
 
 import java.util.HashMap;
@@ -41,10 +40,11 @@ public class AUtilisateur implements IUtilisateur {
         return BiensDeApplication.getBiens();
     }
 
-    public void surencherir(IBien bien, double montant) throws EncherirNotPossibleException {
+    public void surencherir(IBien bien, double montant) {
         try {
             bien.encherir(montant, this);
             biensSurencheris.put(bien, montant);
+            bien.setSurencheresEnregistrees(this, montant);
         } catch (Exception e) {}
     }
 

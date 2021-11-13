@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface IUtilisateur {
 
+    String getNomUtilisateur();
+
     HashMap<IBien, Double> getBiensSurencheris();
 
     HashMap<IBien, Double> getBiensAchetes();

@@ -6,29 +6,22 @@ import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
 import encheres.interfaces.fabriques.IFabriqueCondition;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 public class FabriqueCondition implements IFabriqueCondition {
 
     @Override
-    public ICondition fabriqueCondition(String type, Object... attributs) {
-
-        if (attributs == null)
-            throw new IllegalArgumentException("Les attributs ne sont pas définis !!!");
+    public ICondition fabriqueCondition(String type, IBien bien, double montant) {
 
         type.toLowerCase(Locale.ROOT);
 
         switch (type) {
 
             case "ismontantvalid": {
-                List<Object> list = getAttributs(attributs);
-                return new IsMontantValid((IBien) list.get(0), (double) list.get(1));
+                return new IsMontantValid(bien, montant);
             }
             case "isperiodevalid" : {
-                List<Object> list = getAttributs(attributs);
-                return new IsPeriodeValid((IBien) list.get(0));
+                return new IsPeriodeValid(bien);
             }
             default:
                 throw new IllegalArgumentException("Type n'est pas defini");
@@ -36,11 +29,4 @@ public class FabriqueCondition implements IFabriqueCondition {
         }
     }
 
-    private List<Object> getAttributs(Object[] attributs) {
-        List<Object> list = new ArrayList<>();
-        for (Object attribut : attributs) {
-            list.add(attribut);
-        }
-        return list;
-    }
 }
