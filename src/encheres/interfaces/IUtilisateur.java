@@ -17,4 +17,8 @@ public interface IUtilisateur {
 
     void surencherir(IBien bien, double montant) throws EncherirNotPossibleException;
 
+    IBien inscrireBien(String type, Object... attributs);
+
+    double consulterFraisGestion(IBien bien);
+
 }

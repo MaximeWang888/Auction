@@ -7,6 +7,8 @@ import encheres.interfaces.fabriques.IFabriqueBien;
 import encheres.interfaces.fabriques.IFabriqueFraisGestion;
 import encheres.interfaces.fabriques.IFabriqueUtilisateur;
 import fabriques.FabriqueBien;
+import fabriques.FabriqueFraisGestion;
+import fabriques.FabriqueUtilisateur;
 import fraisGestion.FraisGestion10et5;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,29 +28,41 @@ public class BienTest {
     private Calendar dateD;
     private Calendar dateF;
     private IFraisGestion fraisGestion;
-    private Client c;
-    private Responsable r;
-    private Employe e;
+    private IUtilisateur c;
+    private IUtilisateur r;
+    private IUtilisateur e;
     private IBien habitation;
     private IBien vehicule;
 
 
     @BeforeEach
     void initialisationDonnee() {
-        // Given
+
+        // Differentes Fabriques
         fabriqueBien = new FabriqueBien();
+        fabriqueFraisGestion = new FabriqueFraisGestion();
+        fabriqueUtilisateur = new FabriqueUtilisateur();
+
+        // Dates
         dateD = new GregorianCalendar(2021, Calendar.OCTOBER, 1);
         dateF = new GregorianCalendar(2021, Calendar.DECEMBER, 1);
-        fraisGestion = new FraisGestion10et5();
-        c = new Client("Jeff Bezos");
-        r = new Responsable("Coralie");
-        e = new Employe("Hervé", new FabriqueBien());
+
+        // Frais Gestion
+        fraisGestion = fabriqueFraisGestion.fabriqueFraisGestion("fraisgestion10et5");
+
+        // Les Utilisateurs
+        c = fabriqueUtilisateur.fabriqueUtilisateur("client", "Jeff Bezos");
+        r = fabriqueUtilisateur.fabriqueUtilisateur("responsable", "Coralie");
+        e = fabriqueUtilisateur.fabriqueUtilisateur("employe", "Hervé");
+
+        // Les Biens
         habitation = fabriqueBien.fabriqueBien(
                 "habitation",
                 "Un appartement dans le 16ème Arrondissement", 250000.0, dateD, dateF, fraisGestion, "Paris", 5);
         vehicule = fabriqueBien.fabriqueBien(
                 "vehicule",
                 "Une Tesla Model X", 55000.0, dateD, dateF, fraisGestion, "Tesla", 2021);
+
     }
 
     @Test
@@ -108,7 +122,7 @@ public class BienTest {
     }
 
     @Test
-    void consulterFraisDeGestionDunBienVendu() {
+    void consulterFraisDeGestionDunBienVendu() throws EncherirNotPossibleException {
         // Given
         double expectedFraisGestion = 30000.0; // 10 % pour un bien non vendu
 
@@ -164,7 +178,7 @@ public class BienTest {
     }
 
     @Test
-    void consulterSurencheresEnregistrer() {
+    void consulterSurencheresEnregistrer() throws EncherirNotPossibleException {
         // Given
         HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
         expectedSEnregistrer.put(c, 300000.0); expectedSEnregistrer.put(c, 350000.0);
