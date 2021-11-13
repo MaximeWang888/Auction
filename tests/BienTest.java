@@ -12,9 +12,6 @@ import fabriques.FabriqueUtilisateur;
 import fraisGestion.FraisGestion10et5;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utilisateurs.Client;
-import utilisateurs.Employe;
-import utilisateurs.Responsable;
 
 import java.util.*;
 
