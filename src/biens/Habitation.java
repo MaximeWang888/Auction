@@ -17,7 +17,7 @@ public class Habitation extends ABien {
 
     @Override
     public boolean isMontantEnchereValid(double montantEnchere) {
-        if (getDernierEncherisseur() == null)
+        if (this.getSurencheresEnregistrees().isEmpty())
             return montantEnchere >= getMontantD();
         else
             return montantEnchere >= getMontant() * 1.1;

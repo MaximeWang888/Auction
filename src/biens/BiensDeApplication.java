@@ -17,4 +17,8 @@ public class BiensDeApplication {
         biens.add(bien);
     }
 
+    public static void setAllBiensNull() {
+        biens.clear();
+    }
+
 }

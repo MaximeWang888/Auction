@@ -8,6 +8,9 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.net.MalformedURLException;
+
 public class Main extends Application {
 
     @Override
@@ -17,7 +20,10 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("ventes-encheres-immobilier.jpg"));
         primaryStage.setTitle("Enchère");
         Scene scene = new Scene(root, 600, 600, Color.BLACK);
-        scene.getStylesheets().add("path/stylesheet.css");
+        String fontSheet = fileToStylesheetString( new File("src/interface_enchere/stylesheet.css") );
+
+        scene.getStylesheets().add( fontSheet );
+
         primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.show();
@@ -25,6 +31,14 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+    }
+
+    public String fileToStylesheetString ( File stylesheetFile ) {
+        try {
+            return stylesheetFile.toURI().toURL().toString();
+        } catch ( MalformedURLException e ) {
+            return null;
+        }
     }
 
 }

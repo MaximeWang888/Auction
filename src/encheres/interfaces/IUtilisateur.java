@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface IUtilisateur {
 
+    String getNomUtilisateur();
+
     HashMap<IBien, Double> getBiensSurencheris();
 
     HashMap<IBien, Double> getBiensAchetes();
@@ -14,5 +16,9 @@ public interface IUtilisateur {
     List<IBien> consulterBiens();
 
     void surencherir(IBien bien, double montant) throws EncherirNotPossibleException;
+
+    IBien inscrireBien(String type, Object... attributs);
+
+    double consulterFraisGestion(IBien bien);
 
 }

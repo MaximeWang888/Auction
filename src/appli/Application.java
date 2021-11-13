@@ -33,9 +33,6 @@ public class Application {
                 5
         );
 
-        biens.add(habitation);
-        biens.add(habitation2);
-
     }
 
 }
