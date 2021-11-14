@@ -63,8 +63,27 @@ public class BienTest {
     }
 
     @Test
+    void clientConsulterFraisGestionImpossible() {
+        // When
+        assertThrows(RuntimeException.class, () -> c.consulterFraisGestion(habitation));
+    }
+
+    @Test
+    void employeConsulterFraisGestionImpossible() {
+        // When
+        assertThrows(RuntimeException.class, () -> e.consulterFraisGestion(habitation));
+    }
+
+    @Test
+    void responsableConsulterFraisGestionImpossible() {
+        // When
+        assertThrows(RuntimeException.class, () -> r.inscrireBien("habitation", "habitation",
+                "Un appartement dans le 16ème Arrondissement", 250000.0, dateD, dateF, fraisGestion, "Paris", 5));
+    }
+
+    @Test
     void surrencherirHabitationMontantEtPeriodeConforme() {
-        // Then
+        // When
         assertDoesNotThrow(() -> habitation.encherir(300000.0, e));
     }
 
@@ -80,19 +99,21 @@ public class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Paris", 5);
 
-        // Then
         assertThrows(EncherirNotPossibleException.class, () -> habitation2.encherir(300000.0, e));
+
+        // Then : Rien car pas de resultat
+
     }
 
     @Test
     void surrencherirHabitationMontantPasConforme() {
-        // Then
+        // When
         assertThrows(EncherirNotPossibleException.class, () -> habitation.encherir(200000.0, e));
     }
 
     @Test
     void surrencherirVehiculeMontantEtPeriodeConforme() {
-        // Then
+        // When
         assertDoesNotThrow(()->vehicule.encherir(60000.0, e));
     }
 
@@ -108,8 +129,10 @@ public class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Tesla", 2021);
 
-        // Then
         assertThrows(EncherirNotPossibleException.class, () -> vehicule2.encherir(60000.0, e));
+
+        // Then : Rien car pas de resultat
+
     }
 
     @Test
