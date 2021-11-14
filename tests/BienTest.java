@@ -17,7 +17,7 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class BienTest {
+class BienTest {
 
     private IFabriqueBien fabriqueBien;
     private IFabriqueFraisGestion fabriqueFraisGestion;
