@@ -5,8 +5,8 @@ import encheres.interfaces.IFraisGestion;
 import java.util.Calendar;
 
 public class Vehicule extends ABien {
-    private String marque;
-    private int anneeFabrication;
+    private final String marque;
+    private final int anneeFabrication;
 
     public Vehicule(String description, double montantD, Calendar dateD, Calendar dateF, IFraisGestion fraisGestion,
                     String marque, int anneeFabrication) {

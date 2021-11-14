@@ -3,7 +3,7 @@ package conditions;
 import encheres.interfaces.IBien;
 
 public class IsMontantValid extends ACondition {
-    private double montant;
+    private final double montant;
 
     public IsMontantValid(IBien bien, double montant) {
         super(bien);

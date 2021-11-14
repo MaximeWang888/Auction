@@ -20,7 +20,7 @@ public class FabriqueFraisGestion implements IFabriqueFraisGestion {
             case "fraisgestion10et5": {
                 return new FraisGestion10et5();
             }
-            case "fraisgestion20" : {
+            case "fraisgestion20": {
                 return new FraisGestion20();
             }
             default:

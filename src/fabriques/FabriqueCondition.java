@@ -20,7 +20,7 @@ public class FabriqueCondition implements IFabriqueCondition {
             case "ismontantvalid": {
                 return new IsMontantValid(bien, montant);
             }
-            case "isperiodevalid" : {
+            case "isperiodevalid": {
                 return new IsPeriodeValid(bien);
             }
             default:

@@ -7,7 +7,7 @@ import java.util.List;
 
 public class BiensDeApplication {
 
-    private static List<IBien> biens = new ArrayList<>();
+    private static final List<IBien> biens = new ArrayList<>();
 
     public static List<IBien> getBiens() {
         return biens;
