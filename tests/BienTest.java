@@ -198,7 +198,7 @@ class BienTest {
     }
 
     @Test
-    void consulterSurencheresEnregistrer() throws EncherirNotPossibleException {
+    void consulterSurencheresEnregistrerHabitation() throws EncherirNotPossibleException {
         // Given
         HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
         expectedSEnregistrer.put(c, 300000.0); expectedSEnregistrer.put(c, 350000.0);
@@ -207,6 +207,22 @@ class BienTest {
         c.surencherir(habitation, 300000.0);
         c.surencherir(habitation, 350000.0);
         HashMap<IUtilisateur, Double> actualSEnregistrer = habitation.getSurencheresEnregistrees();
+
+        // Then
+        assertEquals(expectedSEnregistrer, actualSEnregistrer);
+    }
+
+    @Test
+    void consulterSurencheresEnregistrerVehicule() throws EncherirNotPossibleException {
+        // Given
+        IUtilisateur c1 = fabriqueUtilisateur.fabriqueUtilisateur("client", "Bill Gates");
+        HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
+        expectedSEnregistrer.put(c1, 300000.0); expectedSEnregistrer.put(c1, 350000.0);
+
+        // When
+        c1.surencherir(vehicule, 300000.0);
+        c1.surencherir(vehicule, 350000.0);
+        HashMap<IUtilisateur, Double> actualSEnregistrer = vehicule.getSurencheresEnregistrees();
 
         // Then
         assertEquals(expectedSEnregistrer, actualSEnregistrer);
