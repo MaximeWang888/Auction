@@ -19,7 +19,7 @@ public class Application {
                 new FraisGestion20(),
                 "Paris",
                 5
-                );
+        );
 
         habitation.setFraisGestion(new FraisGestion10et5());
 

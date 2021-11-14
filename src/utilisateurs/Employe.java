@@ -5,7 +5,7 @@ import encheres.interfaces.IBien;
 import encheres.interfaces.fabriques.IFabriqueBien;
 
 public class Employe extends AUtilisateur {
-    private IFabriqueBien fabrique;
+    private final IFabriqueBien fabrique;
 
     public Employe(String nomUtilisateur, IFabriqueBien fabrique) {
         super(nomUtilisateur);

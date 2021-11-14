@@ -1,23 +1,23 @@
 package biens;
 
+import encheres.Enchere;
+import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IBien;
 import encheres.interfaces.IFraisGestion;
 import encheres.interfaces.IUtilisateur;
-import encheres.Enchere;
-import encheres.EncherirNotPossibleException;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 
 public abstract class ABien implements IBien {
-    private String description;
-    private double montantD;
+    private final String description;
+    private final double montantD;
     private double montant;
-    private Calendar dateD;
-    private Calendar dateF;
+    private final Calendar dateD;
+    private final Calendar dateF;
     private IFraisGestion fraisGestion;
-    private HashMap<IUtilisateur, Double> surencheresEnregistrees;
+    private final HashMap<IUtilisateur, Double> surencheresEnregistrees;
 
 
     public ABien(String description, double montantD, Calendar dateD, Calendar dateF, IFraisGestion fraisGestion) {
@@ -46,6 +46,7 @@ public abstract class ABien implements IBien {
     public double getMontantD() {
         return montantD;
     }
+
     public Date getDateD() {
         return dateD.getTime();
     }
@@ -54,16 +55,16 @@ public abstract class ABien implements IBien {
         return dateF.getTime();
     }
 
-    public HashMap<IUtilisateur, Double> getSurencheresEnregistrees() {
-        return surencheresEnregistrees;
-    }
-
 
 
     // Setters
 
     public void setMontant(double montant) {
         this.montant = montant;
+    }
+
+    public HashMap<IUtilisateur, Double> getSurencheresEnregistrees() {
+        return surencheresEnregistrees;
     }
 
     public void setFraisGestion(IFraisGestion fraisGestion) {

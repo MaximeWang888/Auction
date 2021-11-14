@@ -9,9 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public abstract class AUtilisateur implements IUtilisateur {
-    private String nomUtilisateur;
-    private HashMap<IBien, Double> biensSurencheris;
-    private HashMap<IBien, Double> biensAchetes; // liste des biens acquis par cette utilisateur
+    private final String nomUtilisateur;
+    private final HashMap<IBien, Double> biensSurencheris;
+    private final HashMap<IBien, Double> biensAchetes; // liste des biens acquis par cette utilisateur
 
     public AUtilisateur(String nomUtilisateur) {
         this.nomUtilisateur = nomUtilisateur;
@@ -45,12 +45,15 @@ public abstract class AUtilisateur implements IUtilisateur {
     }
 
     @Override
-    public void surencherir(IBien bien, double montant) {
+    public void surencherir(IBien bien, double montant) throws EncherirNotPossibleException {
         try {
             bien.encherir(montant, this);
             biensSurencheris.put(bien, montant);
             bien.setSurencheresEnregistrees(this, montant);
-        } catch (EncherirNotPossibleException e) {}
+        } catch (EncherirNotPossibleException e) {
+            throw new EncherirNotPossibleException("L'enchère n'a pas pu aboutir." +
+                    " Veuillez vérifier le montant et la date de l'enchère.");
+        }
     }
 
 }

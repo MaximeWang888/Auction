@@ -10,9 +10,9 @@ public class FraisGestion10et5 extends AFraisGestion {
     public double calculFraisGestion(IBien bien) {
         // Si le bien est vendu
         if (bien.getDateF().after(Calendar.getInstance().getTime()) && !bien.getSurencheresEnregistrees().isEmpty())
-            return bien.getMontant()*0.10;
+            return bien.getMontant() * 0.10;
         else
-            return bien.getMontant()*0.05;
+            return bien.getMontant() * 0.05;
     }
 
 }

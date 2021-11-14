@@ -5,8 +5,8 @@ import encheres.interfaces.IFraisGestion;
 import java.util.Calendar;
 
 public class Habitation extends ABien {
-    private String ville;
-    private int nbPiece;
+    private final String ville;
+    private final int nbPiece;
 
     public Habitation(String description, double montantD, Calendar dateD, Calendar dateF, IFraisGestion fraisGestion,
                       String ville, int nbPiece) {

@@ -19,10 +19,10 @@ public class FabriqueUtilisateur implements IFabriqueUtilisateur {
             case "client": {
                 return new Client(nomUtilisateur);
             }
-            case "employe" : {
+            case "employe": {
                 return new Employe(nomUtilisateur, new FabriqueBien());
             }
-            case "responsable" : {
+            case "responsable": {
                 return new Responsable(nomUtilisateur);
             }
             default:
