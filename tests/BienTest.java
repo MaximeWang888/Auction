@@ -63,8 +63,27 @@ public class BienTest {
     }
 
     @Test
+    void clientConsulterFraisGestionImpossible() {
+        // When
+        assertThrows(RuntimeException.class, () -> c.consulterFraisGestion(habitation));
+    }
+
+    @Test
+    void employeConsulterFraisGestionImpossible() {
+        // When
+        assertThrows(RuntimeException.class, () -> e.consulterFraisGestion(habitation));
+    }
+
+    @Test
+    void responsableConsulterFraisGestionImpossible() {
+        // When
+        assertThrows(RuntimeException.class, () -> r.inscrireBien("habitation", "habitation",
+                "Un appartement dans le 16ème Arrondissement", 250000.0, dateD, dateF, fraisGestion, "Paris", 5));
+    }
+
+    @Test
     void surrencherirHabitationMontantEtPeriodeConforme() {
-        // Then
+        // When
         assertDoesNotThrow(() -> habitation.encherir(300000.0, e));
     }
 
@@ -80,19 +99,21 @@ public class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Paris", 5);
 
-        // Then
         assertThrows(EncherirNotPossibleException.class, () -> habitation2.encherir(300000.0, e));
+
+        // Then : Rien car pas de resultat
+
     }
 
     @Test
     void surrencherirHabitationMontantPasConforme() {
-        // Then
+        // When
         assertThrows(EncherirNotPossibleException.class, () -> habitation.encherir(200000.0, e));
     }
 
     @Test
     void surrencherirVehiculeMontantEtPeriodeConforme() {
-        // Then
+        // When
         assertDoesNotThrow(()->vehicule.encherir(60000.0, e));
     }
 
@@ -108,8 +129,10 @@ public class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Tesla", 2021);
 
-        // Then
         assertThrows(EncherirNotPossibleException.class, () -> vehicule2.encherir(60000.0, e));
+
+        // Then : Rien car pas de resultat
+
     }
 
     @Test
@@ -146,13 +169,13 @@ public class BienTest {
     @Test
     void consulterBiensMisAuEnchereCorrect() {
         // Given
-        BiensDeApplication.setAllBiensNull(); // reset la liste des biens à vide
+        BiensDeApplication.clearListBiens(); // reset la liste des biens à vide
         List<IBien> expectedBiens = new ArrayList<>();
         expectedBiens.add(vehicule); expectedBiens.add(habitation);
 
         // When
-        BiensDeApplication.setBien(vehicule);
-        BiensDeApplication.setBien(habitation);
+        BiensDeApplication.ajouterBien(vehicule);
+        BiensDeApplication.ajouterBien(habitation);
         List<IBien> actualBiens = c.consulterBiens();
 
         // Then
@@ -162,12 +185,12 @@ public class BienTest {
     @Test
     void consulterBiensMisAuEnchereIncorrect() {
         // Given
-        BiensDeApplication.setAllBiensNull(); // reset la liste des biens à vide
+        BiensDeApplication.clearListBiens(); // reset la liste des biens à vide
         List<IBien> expectedBiens = new ArrayList<>();
         expectedBiens.add(vehicule); expectedBiens.add(habitation);
 
         // When
-        BiensDeApplication.setBien(vehicule);
+        BiensDeApplication.ajouterBien(vehicule);
         List<IBien> actualBiens = c.consulterBiens();
 
         // Then
@@ -175,7 +198,7 @@ public class BienTest {
     }
 
     @Test
-    void consulterSurencheresEnregistrer() throws EncherirNotPossibleException {
+    void consulterSurencheresEnregistrerHabitation() throws EncherirNotPossibleException {
         // Given
         HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
         expectedSEnregistrer.put(c, 300000.0); expectedSEnregistrer.put(c, 350000.0);
@@ -188,5 +211,22 @@ public class BienTest {
         // Then
         assertEquals(expectedSEnregistrer, actualSEnregistrer);
     }
+
+    @Test
+    void consulterSurencheresEnregistrerVehicule() throws EncherirNotPossibleException {
+        // Given
+        IUtilisateur c1 = fabriqueUtilisateur.fabriqueUtilisateur("client", "Bill Gates");
+        HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
+        expectedSEnregistrer.put(c1, 300000.0); expectedSEnregistrer.put(c1, 350000.0);
+
+        // When
+        c1.surencherir(vehicule, 300000.0);
+        c1.surencherir(vehicule, 350000.0);
+        HashMap<IUtilisateur, Double> actualSEnregistrer = vehicule.getSurencheresEnregistrees();
+
+        // Then
+        assertEquals(expectedSEnregistrer, actualSEnregistrer);
+    }
+
 
 }

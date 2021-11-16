@@ -16,7 +16,7 @@ public class Employe extends AUtilisateur {
     public IBien inscrireBien(String type, Object... attributs) {
         IBien bienCreer = fabrique.fabriqueBien(type, attributs);
 
-        BiensDeApplication.setBien(bienCreer);
+        BiensDeApplication.ajouterBien(bienCreer);
 
         return bienCreer;
     }

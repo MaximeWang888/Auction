@@ -7,8 +7,16 @@ import fraisGestion.FraisGestion20;
 
 import java.util.Calendar;
 
+/**
+ * Modélise l'application lancant une session d'enchere.
+ * @author  Martin-Deep Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class Application {
 
+    /**
+     * Creation et lancement de l'enchere
+     */
     public static void main(String[] args) {
 
         IBien habitation = new Habitation(
