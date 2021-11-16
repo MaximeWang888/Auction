@@ -3,7 +3,7 @@ package appli;
 import biens.Habitation;
 import encheres.interfaces.IBien;
 import fraisGestion.FraisGestion10et5;
-import fraisGestion.FraisGestion20;
+import fraisGestion.FraisGestion500et1000;
 
 import java.util.Calendar;
 
@@ -16,7 +16,7 @@ public class Application {
                 200000,
                 Calendar.getInstance(),
                 Calendar.getInstance(),
-                new FraisGestion20(),
+                new FraisGestion500et1000(),
                 "Paris",
                 5
         );
@@ -28,10 +28,12 @@ public class Application {
                 200000,
                 Calendar.getInstance(),
                 Calendar.getInstance(),
-                new FraisGestion20(),
+                new FraisGestion500et1000(),
                 "Paris",
                 5
         );
+
+        habitation.setFraisGestion(new FraisGestion500et1000());
 
     }
 
