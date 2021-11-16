@@ -19,7 +19,7 @@ public interface IBien {
 
     void setMontant(double montant);
 
-    void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException;
+    void encherir(double montant) throws EncherirNotPossibleException;
 
     boolean isMontantEnchereValid(double montantEnchere);
 

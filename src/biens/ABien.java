@@ -77,8 +77,8 @@ public abstract class ABien implements IBien {
 
     // Methods
 
-    public void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException {
-        new Enchere(this, montant, encherisseur);
+    public void encherir(double montant) throws EncherirNotPossibleException {
+        new Enchere(this, montant);
     }
 
     public double consulterFraisGestion() {

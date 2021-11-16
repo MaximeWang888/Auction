@@ -8,13 +8,11 @@ import encheres.interfaces.IUtilisateur;
 public class Enchere {
     private final IBien bien;
     private final double montant;
-    private final IUtilisateur enrichisseur;
 
 
-    public Enchere(IBien bien, double montant, IUtilisateur enrichisseur) throws EncherirNotPossibleException {
+    public Enchere(IBien bien, double montant) throws EncherirNotPossibleException {
         this.bien = bien;
         this.montant = montant;
-        this.enrichisseur = enrichisseur;
 
         encherir();
     }

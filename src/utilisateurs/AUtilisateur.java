@@ -47,7 +47,7 @@ public abstract class AUtilisateur implements IUtilisateur {
     @Override
     public void surencherir(IBien bien, double montant) throws EncherirNotPossibleException {
         try {
-            bien.encherir(montant, this);
+            bien.encherir(montant);
             biensSurencheris.put(bien, montant);
             bien.setSurencheresEnregistrees(this, montant);
         } catch (EncherirNotPossibleException e) {

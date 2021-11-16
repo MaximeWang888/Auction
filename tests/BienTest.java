@@ -84,7 +84,7 @@ class BienTest {
     @Test
     void surrencherirHabitationMontantEtPeriodeConforme() {
         // When
-        assertDoesNotThrow(() -> habitation.encherir(300000.0, e));
+        assertDoesNotThrow(() -> e.surencherir(habitation, 300000.0));
     }
 
     @Test
@@ -99,7 +99,7 @@ class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Paris", 5);
 
-        assertThrows(EncherirNotPossibleException.class, () -> habitation2.encherir(300000.0, e));
+        assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(habitation2, 300000.0));
 
         // Then : Rien car pas de resultat
 
@@ -108,13 +108,13 @@ class BienTest {
     @Test
     void surrencherirHabitationMontantPasConforme() {
         // When
-        assertThrows(EncherirNotPossibleException.class, () -> habitation.encherir(200000.0, e));
+        assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(habitation, 200000.0));
     }
 
     @Test
     void surrencherirVehiculeMontantEtPeriodeConforme() {
         // When
-        assertDoesNotThrow(()->vehicule.encherir(60000.0, e));
+        assertDoesNotThrow(()->e.surencherir(vehicule, 60000.0));
     }
 
     @Test
@@ -129,7 +129,7 @@ class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Tesla", 2021);
 
-        assertThrows(EncherirNotPossibleException.class, () -> vehicule2.encherir(60000.0, e));
+        assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(vehicule2, 60000.0));
 
         // Then : Rien car pas de resultat
 
@@ -138,7 +138,7 @@ class BienTest {
     @Test
     void surrencherirVehiculeMontantPasConforme() {
         // Then
-        assertThrows(EncherirNotPossibleException.class, ()-> vehicule.encherir(45000.0, e));
+        assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(vehicule, 45000.0));
     }
 
     @Test
