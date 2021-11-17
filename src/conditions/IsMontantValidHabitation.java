@@ -26,7 +26,10 @@ public class IsMontantValid extends ACondition {
 
     @Override
     public boolean isConditionRespected() {
-        return this.getBien().isMontantEnchereValid(montant);
+        if (getBien().getSurencheresEnregistrees().isEmpty())
+            return montant >= getBien().getMontantD();
+        else
+            return montant >= getBien().getMontant() * 1.1;
     }
 
 }
