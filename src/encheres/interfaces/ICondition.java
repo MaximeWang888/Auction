@@ -11,6 +11,6 @@ public interface ICondition {
      * Permet de verifier si la condition est respectee
      * @return True si la condition est respectee, False dans le cas contraire
      */
-    boolean isConditionRespected();
+    boolean isConditionRespected(IBien bien, double montant);
 
 }

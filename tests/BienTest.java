@@ -1,12 +1,15 @@
 import biens.BiensDeApplication;
 import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IBien;
+import encheres.interfaces.ICondition;
 import encheres.interfaces.IFraisGestion;
 import encheres.interfaces.IUtilisateur;
 import encheres.interfaces.fabriques.IFabriqueBien;
+import encheres.interfaces.fabriques.IFabriqueCondition;
 import encheres.interfaces.fabriques.IFabriqueFraisGestion;
 import encheres.interfaces.fabriques.IFabriqueUtilisateur;
 import fabriques.FabriqueBien;
+import fabriques.FabriqueCondition;
 import fabriques.FabriqueFraisGestion;
 import fabriques.FabriqueUtilisateur;
 import fraisGestion.FraisGestion10et5;
@@ -22,6 +25,7 @@ public class BienTest {
     private IFabriqueBien fabriqueBien;
     private IFabriqueFraisGestion fabriqueFraisGestion;
     private IFabriqueUtilisateur fabriqueUtilisateur;
+    private IFabriqueCondition fabriqueCondition;
     private Calendar dateD;
     private Calendar dateF;
     private IFraisGestion fraisGestion;
@@ -30,7 +34,7 @@ public class BienTest {
     private IUtilisateur e;
     private IBien habitation;
     private IBien vehicule;
-
+    private static List<ICondition> conditions = new ArrayList<>();
 
     @BeforeEach
     void initialisationDonnee() {
@@ -39,6 +43,7 @@ public class BienTest {
         fabriqueBien = new FabriqueBien();
         fabriqueFraisGestion = new FabriqueFraisGestion();
         fabriqueUtilisateur = new FabriqueUtilisateur();
+        fabriqueCondition = new FabriqueCondition();
 
         // Dates
         dateD = new GregorianCalendar(2021, Calendar.OCTOBER, 1);
@@ -55,11 +60,18 @@ public class BienTest {
         // Les Biens
         habitation = fabriqueBien.fabriqueBien(
                 "habitation",
-                "Un appartement dans le 16ème Arrondissement", 250000.0, dateD, dateF, fraisGestion, "Paris", 5);
+                "Un appartement dans le 16ème Arrondissement", 250000.0, dateD, dateF, fraisGestion,
+                "Paris", 5);
         vehicule = fabriqueBien.fabriqueBien(
                 "vehicule",
                 "Une Tesla Model X", 55000.0, dateD, dateF, fraisGestion, "Tesla", 2021);
 
+
+
+//        List<ICondition> conditions = new ArrayList<>();
+//        conditions.add(new IsMontantValidHabitation());
+//        conditions.add(new IsPeriodeValid());
+//        ABien.setConditions(conditions);
     }
 
     @Test
@@ -83,6 +95,9 @@ public class BienTest {
 
     @Test
     void surrencherirHabitationMontantEtPeriodeConforme() {
+        // Given
+        conditions = fabriqueCondition.fabriqueCondition("habitation");
+
         // When
         assertDoesNotThrow(() -> habitation.encherir(300000.0, e));
     }
@@ -92,6 +107,7 @@ public class BienTest {
         // Given
         dateF = new GregorianCalendar(2021, Calendar.NOVEMBER, 1);
         IBien habitation2;
+        conditions = fabriqueCondition.fabriqueCondition("habitation");
 
         // When : changing the end date
         habitation2 = e.inscrireBien("habitation",
@@ -107,12 +123,18 @@ public class BienTest {
 
     @Test
     void surrencherirHabitationMontantPasConforme() {
+        // Given
+        conditions = fabriqueCondition.fabriqueCondition("habitation");
+
         // When
         assertThrows(EncherirNotPossibleException.class, () -> habitation.encherir(200000.0, e));
     }
 
     @Test
     void surrencherirVehiculeMontantEtPeriodeConforme() {
+        // Given
+        conditions = fabriqueCondition.fabriqueCondition("vehicule");
+
         // When
         assertDoesNotThrow(()->vehicule.encherir(60000.0, e));
     }
@@ -122,6 +144,7 @@ public class BienTest {
         // Given
         dateF = new GregorianCalendar(2021, Calendar.NOVEMBER, 1);
         IBien vehicule2;
+        conditions = fabriqueCondition.fabriqueCondition("vehicule");
 
         // When : changing the end date
         vehicule2 = fabriqueBien.fabriqueBien("vehicule",
@@ -137,6 +160,9 @@ public class BienTest {
 
     @Test
     void surrencherirVehiculeMontantPasConforme() {
+        // Given
+        conditions = fabriqueCondition.fabriqueCondition("vehicule");
+
         // Then
         assertThrows(EncherirNotPossibleException.class, ()-> vehicule.encherir(45000.0, e));
     }
@@ -145,6 +171,7 @@ public class BienTest {
     void consulterFraisDeGestionDunBienVendu() throws EncherirNotPossibleException {
         // Given
         double expectedFraisGestion = 30000.0; // 10 % pour un bien non vendu
+        conditions = fabriqueCondition.fabriqueCondition("habitation");
 
         // When
         c.surencherir(habitation, 300000.0);
@@ -217,11 +244,12 @@ public class BienTest {
         // Given
         IUtilisateur c1 = fabriqueUtilisateur.fabriqueUtilisateur("client", "Bill Gates");
         HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
-        expectedSEnregistrer.put(c1, 300000.0); expectedSEnregistrer.put(c1, 350000.0);
+        expectedSEnregistrer.put(c1, 300000.0); expectedSEnregistrer.put(c1, 300001.0);
+        conditions = fabriqueCondition.fabriqueCondition("vehicule");
 
         // When
         c1.surencherir(vehicule, 300000.0);
-        c1.surencherir(vehicule, 350000.0);
+        c1.surencherir(vehicule, 300001.0);
         HashMap<IUtilisateur, Double> actualSEnregistrer = vehicule.getSurencheresEnregistrees();
 
         // Then

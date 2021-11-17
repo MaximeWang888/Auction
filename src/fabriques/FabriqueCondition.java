@@ -1,11 +1,15 @@
 package fabriques;
 
-import conditions.IsMontantValid;
+import biens.ABien;
+import conditions.IsMontantValidHabitation;
+import conditions.IsMontantValidVehicule;
 import conditions.IsPeriodeValid;
 import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
 import encheres.interfaces.fabriques.IFabriqueCondition;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -16,17 +20,25 @@ import java.util.Locale;
 public class FabriqueCondition implements IFabriqueCondition {
 
     @Override
-    public ICondition fabriqueCondition(String type, IBien bien, double montant) {
+    public List<ICondition> fabriqueCondition(String type) {
 
         type.toLowerCase(Locale.ROOT);
 
+        List<ICondition> conditions = new ArrayList<>();
+
         switch (type) {
 
-            case "ismontantvalid": {
-                return new IsMontantValid(bien, montant);
+            case "habitation": {
+                conditions.add(new IsMontantValidHabitation());
+                conditions.add(new IsPeriodeValid());
+                ABien.setConditions(conditions);
+                return conditions;
             }
-            case "isperiodevalid" : {
-                return new IsPeriodeValid(bien);
+            case "vehicule" : {
+                conditions.add(new IsMontantValidVehicule());
+                conditions.add(new IsPeriodeValid());
+                ABien.setConditions(conditions);
+                return conditions;
             }
             default:
                 throw new IllegalArgumentException("Type n'est pas defini");

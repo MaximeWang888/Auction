@@ -1,6 +1,7 @@
 package conditions;
 
 import encheres.interfaces.IBien;
+import encheres.interfaces.ICondition;
 
 import java.util.Calendar;
 
@@ -9,20 +10,12 @@ import java.util.Calendar;
  * @author  Martin-Deep Daryl, Maxime Wang
  * @version 1.0
  */
-public class IsPeriodeValid extends ACondition {
-
-    /**
-     * Constructeur d'une condition pour verifier si la periode du bien est valide
-     * @param bien le bien
-     */
-    public IsPeriodeValid(IBien bien) {
-        super(bien);
-    }
+public class IsPeriodeValid implements ICondition {
 
     @Override
-    public boolean isConditionRespected() {
-        return this.getBien().getDateD().before(Calendar.getInstance().getTime()) &&
-                this.getBien().getDateF().after(Calendar.getInstance().getTime());
+    public boolean isConditionRespected(IBien bien, double montant) {
+        return bien.getDateD().before(Calendar.getInstance().getTime()) &&
+                bien.getDateF().after(Calendar.getInstance().getTime());
     }
 
 }

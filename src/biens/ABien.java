@@ -1,6 +1,7 @@
 package biens;
 
 import encheres.interfaces.IBien;
+import encheres.interfaces.ICondition;
 import encheres.interfaces.IFraisGestion;
 import encheres.interfaces.IUtilisateur;
 import encheres.Enchere;
@@ -9,6 +10,7 @@ import encheres.EncherirNotPossibleException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Modélise un bien en general.
@@ -52,6 +54,15 @@ public abstract class ABien implements IBien {
      */
     private HashMap<IUtilisateur, Double> surencheresEnregistrees;
 
+    private static List<ICondition> conditions;
+
+    public static List<ICondition> getConditions() {
+        return conditions;
+    }
+
+    public static void setConditions(List<ICondition> conditions) {
+        ABien.conditions = conditions;
+    }
 
     /**
      * Constructeur du bien

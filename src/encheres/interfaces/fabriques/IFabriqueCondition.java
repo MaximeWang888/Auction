@@ -3,6 +3,8 @@ package encheres.interfaces.fabriques;
 import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
 
+import java.util.List;
+
 /**
  * L'interface d'une fabrique d'une condition.
  * @author  Martin-Deep Daryl, Maxime Wang
@@ -13,10 +15,8 @@ public interface IFabriqueCondition {
     /**
      * Permet de fabriquer une condition
      * @param type le type de condition
-     * @param bien un bien en general
-     * @param montant un montant
      * @return la condition souhaitant etre fabrique
      */
-    ICondition fabriqueCondition(String type, IBien bien, double montant);
+    List<ICondition> fabriqueCondition(String type);
 
 }

@@ -1,8 +1,10 @@
 package biens;
 
+import encheres.interfaces.ICondition;
 import encheres.interfaces.IFraisGestion;
 
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Modélise une habitation.

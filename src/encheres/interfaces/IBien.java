@@ -4,6 +4,7 @@ import encheres.EncherirNotPossibleException;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * L'interface d'un bien en general.

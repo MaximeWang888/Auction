@@ -1,8 +1,8 @@
 package encheres;
 
-import conditions.IsMontantValid;
-import conditions.IsPeriodeValid;
+import biens.ABien;
 import encheres.interfaces.IBien;
+import encheres.interfaces.ICondition;
 import encheres.interfaces.IUtilisateur;
 
 /**
@@ -48,10 +48,12 @@ public class Enchere {
      * @throws EncherirNotPossibleException
      */
     public void encherir() throws EncherirNotPossibleException {
-        if (new IsPeriodeValid(bien).isConditionRespected() && new IsMontantValid(bien, montant).isConditionRespected()) {
-            bien.setMontant(montant);
-        }
-        else
-            throw new EncherirNotPossibleException("L'enchère n'a pas pu aboutir. Veuillez vérifier le montant et la date de l'enchère.");
+        for (ICondition condi : ABien.getConditions())
+            if (!condi.isConditionRespected(bien, montant)) {
+                throw new EncherirNotPossibleException("L'enchère n'a pas pu aboutir. Veuillez vérifier le montant et la date de l'enchère.");
+            }
+
+        bien.setMontant(montant);
+
     }
 }

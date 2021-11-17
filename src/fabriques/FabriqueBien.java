@@ -3,6 +3,7 @@ package fabriques;
 import biens.Habitation;
 import biens.Vehicule;
 import encheres.interfaces.IBien;
+import encheres.interfaces.ICondition;
 import encheres.interfaces.fabriques.IFabriqueBien;
 import encheres.interfaces.IFraisGestion;
 
