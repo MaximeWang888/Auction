@@ -7,6 +7,11 @@ import fraisGestion.FraisGestion20;
 
 import java.util.Locale;
 
+/**
+ * Modelise une fabrique d'une regle de frais de gestion.
+ * @author  Martin-Deep Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class FabriqueFraisGestion implements IFabriqueFraisGestion {
 
 

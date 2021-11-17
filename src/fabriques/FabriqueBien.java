@@ -11,6 +11,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Modelise une fabrique d'un bien.
+ * @author  Martin-Deep Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class FabriqueBien implements IFabriqueBien {
 
     @Override
@@ -39,6 +44,11 @@ public class FabriqueBien implements IFabriqueBien {
 
     }
 
+    /**
+     * Permet d'extraire les donnees passees en parametre
+     * @param attributs les attributs a extraire
+     * @return une liste d'attribut
+     */
     private List<Object> getAttributs(Object[] attributs) {
         List<Object> list = new ArrayList<>();
         for (Object attribut : attributs) {

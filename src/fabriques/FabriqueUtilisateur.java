@@ -6,6 +6,11 @@ import utilisateurs.Client;
 import utilisateurs.Employe;
 import utilisateurs.Responsable;
 
+/**
+ * Modelise une fabrique d'un utilisateur.
+ * @author  Martin-Deep Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class FabriqueUtilisateur implements IFabriqueUtilisateur {
 
     @Override

@@ -8,6 +8,11 @@ import encheres.interfaces.fabriques.IFabriqueCondition;
 
 import java.util.Locale;
 
+/**
+ * Modelise une fabrique d'une condition.
+ * @author  Martin-Deep Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class FabriqueCondition implements IFabriqueCondition {
 
     @Override
