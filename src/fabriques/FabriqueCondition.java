@@ -4,7 +4,6 @@ import biens.ABien;
 import conditions.IsMontantValidHabitation;
 import conditions.IsMontantValidVehicule;
 import conditions.IsPeriodeValid;
-import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
 import encheres.interfaces.fabriques.IFabriqueCondition;
 

@@ -1,6 +1,5 @@
 package encheres.interfaces.fabriques;
 
-import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
 
 import java.util.List;

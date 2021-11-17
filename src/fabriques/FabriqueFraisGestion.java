@@ -3,7 +3,7 @@ package fabriques;
 import encheres.interfaces.IFraisGestion;
 import encheres.interfaces.fabriques.IFabriqueFraisGestion;
 import fraisGestion.FraisGestion10et5;
-import fraisGestion.FraisGestion20;
+import fraisGestion.FraisGestion500et1000;
 
 import java.util.Locale;
 
@@ -26,7 +26,7 @@ public class FabriqueFraisGestion implements IFabriqueFraisGestion {
                 return new FraisGestion10et5();
             }
             case "fraisgestion20" : {
-                return new FraisGestion20();
+                return new FraisGestion500et1000();
             }
             default:
                 throw new IllegalArgumentException("Type n'est pas defini");

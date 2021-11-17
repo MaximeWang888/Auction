@@ -54,12 +54,23 @@ public abstract class ABien implements IBien {
      */
     private HashMap<IUtilisateur, Double> surencheresEnregistrees;
 
+    /**
+     * La liste correspondant aux conditions d'un bien
+     */
     private static List<ICondition> conditions;
 
+    /**
+     * Permet de connaître les conditions qu'un bien doit valider pour etre surrencherit
+     * @return la liste des conditions qu'un bien doit valider
+     */
     public static List<ICondition> getConditions() {
         return conditions;
     }
 
+    /**
+     * Permet de mettre a jour les conditions qu'un bien doit faire valider avant d'etre encherit
+     * @param conditions la liste des conditions que devra suivre le bien pour etre validé
+     */
     public static void setConditions(List<ICondition> conditions) {
         ABien.conditions = conditions;
     }
@@ -137,8 +148,8 @@ public abstract class ABien implements IBien {
     // Methods
 
     @Override
-    public void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException {
-        new Enchere(this, montant, encherisseur);
+    public void encherir(double montant) throws EncherirNotPossibleException {
+        new Enchere(this, montant);
     }
 
     @Override

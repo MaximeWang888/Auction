@@ -1,10 +1,8 @@
 package biens;
 
-import encheres.interfaces.ICondition;
 import encheres.interfaces.IFraisGestion;
 
 import java.util.Calendar;
-import java.util.List;
 
 /**
  * Modélise un vehicule.
@@ -38,14 +36,6 @@ public class Vehicule extends ABien {
         super(description, montantD, dateD, dateF, fraisGestion);
         this.marque = marque;
         this.anneeFabrication = anneeFabrication;
-    }
-
-    @Override
-    public boolean isMontantEnchereValid(double montantEnchere) {
-        if (this.getSurencheresEnregistrees().isEmpty())
-            return montantEnchere >= getMontantD();
-        else
-            return montantEnchere > getMontant();
     }
 
 }

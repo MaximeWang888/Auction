@@ -4,7 +4,6 @@ import encheres.EncherirNotPossibleException;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 /**
  * L'interface d'un bien en general.
@@ -55,14 +54,7 @@ public interface IBien {
      * @param encherisseur la personne qui encherit sur ce bien
      * @throws EncherirNotPossibleException une erreur lorsque l'encherissement est impossible
      */
-    void encherir(double montant, IUtilisateur encherisseur) throws EncherirNotPossibleException;
-
-    /**
-     * Permet de verifier si le montant de l'encherissement est valide ou pas
-     * @param montantEnchere le montant de l'encherissement du bien
-     * @return True si le montant est valide, False dans le cas contraire
-     */
-    boolean isMontantEnchereValid(double montantEnchere);
+    void encherir(double montant) throws EncherirNotPossibleException;
 
     /**
      * Permet de modifier les frais de gestion du bien

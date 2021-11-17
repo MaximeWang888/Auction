@@ -1,12 +1,5 @@
 package appli;
 
-import biens.Habitation;
-import encheres.interfaces.IBien;
-import fraisGestion.FraisGestion10et5;
-import fraisGestion.FraisGestion20;
-
-import java.util.Calendar;
-
 /**
  * Modélise l'application lancant une session d'enchere.
  * @author  Martin-Deep Daryl, Maxime Wang

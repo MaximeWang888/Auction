@@ -3,7 +3,6 @@ package encheres;
 import biens.ABien;
 import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
-import encheres.interfaces.IUtilisateur;
 
 /**
  * Modelise une enchere d'un bien.
@@ -23,21 +22,15 @@ public class Enchere {
     private double montant;
 
     /**
-     * Represente l'encherisseur de l'enchere
-     */
-    private IUtilisateur enrichisseur;
-
-    /**
      * Constructeur de l'enchere à partir d'un bien et d'un montant
      * @param bien le bien que l'on souhaite encherir
      * @param montant le montant de l'encherissement
      * @param enrichisseur l'enrichisseur
      * @throws EncherirNotPossibleException l'erreur rejete si l'encherissement est impossible
      */
-    public Enchere(IBien bien, double montant, IUtilisateur enrichisseur) throws EncherirNotPossibleException {
+    public Enchere(IBien bien, double montant) throws EncherirNotPossibleException {
         this.bien = bien;
         this.montant = montant;
-        this.enrichisseur = enrichisseur;
 
         // commence la fonction de l'encherissement
         encherir();

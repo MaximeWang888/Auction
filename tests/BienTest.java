@@ -65,13 +65,6 @@ public class BienTest {
         vehicule = fabriqueBien.fabriqueBien(
                 "vehicule",
                 "Une Tesla Model X", 55000.0, dateD, dateF, fraisGestion, "Tesla", 2021);
-
-
-
-//        List<ICondition> conditions = new ArrayList<>();
-//        conditions.add(new IsMontantValidHabitation());
-//        conditions.add(new IsPeriodeValid());
-//        ABien.setConditions(conditions);
     }
 
     @Test
@@ -99,7 +92,7 @@ public class BienTest {
         conditions = fabriqueCondition.fabriqueCondition("habitation");
 
         // When
-        assertDoesNotThrow(() -> habitation.encherir(300000.0, e));
+        assertDoesNotThrow(() -> e.surencherir(habitation, 300000.0));
     }
 
     @Test
@@ -115,7 +108,7 @@ public class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Paris", 5);
 
-        assertThrows(EncherirNotPossibleException.class, () -> habitation2.encherir(300000.0, e));
+        assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(habitation2, 300000.0));
 
         // Then : Rien car pas de resultat
 
@@ -127,7 +120,7 @@ public class BienTest {
         conditions = fabriqueCondition.fabriqueCondition("habitation");
 
         // When
-        assertThrows(EncherirNotPossibleException.class, () -> habitation.encherir(200000.0, e));
+        assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(habitation, 200000.0));
     }
 
     @Test
@@ -136,7 +129,7 @@ public class BienTest {
         conditions = fabriqueCondition.fabriqueCondition("vehicule");
 
         // When
-        assertDoesNotThrow(()->vehicule.encherir(60000.0, e));
+        assertDoesNotThrow(()->e.surencherir(vehicule, 60000.0));
     }
 
     @Test
@@ -152,7 +145,7 @@ public class BienTest {
                 dateF,
                 new FraisGestion10et5(), "Tesla", 2021);
 
-        assertThrows(EncherirNotPossibleException.class, () -> vehicule2.encherir(60000.0, e));
+        assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(vehicule2, 60000.0));
 
         // Then : Rien car pas de resultat
 
@@ -164,7 +157,7 @@ public class BienTest {
         conditions = fabriqueCondition.fabriqueCondition("vehicule");
 
         // Then
-        assertThrows(EncherirNotPossibleException.class, ()-> vehicule.encherir(45000.0, e));
+        assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(vehicule, 45000.0));
     }
 
     @Test
