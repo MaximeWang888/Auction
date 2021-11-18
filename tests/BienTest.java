@@ -1,5 +1,4 @@
-import biens.BiensDeApplication;
-import conditions.IsMontantMaxValidVehicule;
+import appli.BiensDeApplication;
 import conditions.IsMontantMinValidHabitation;
 import conditions.IsMontantMinValidVehicule;
 import conditions.IsPeriodeValid;

@@ -1,4 +1,4 @@
-package biens;
+package appli;
 
 import encheres.interfaces.IBien;
 

@@ -7,6 +7,7 @@ import encheres.interfaces.IUtilisateur;
 import encheres.Enchere;
 import encheres.EncherirNotPossibleException;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -145,7 +146,24 @@ public abstract class ABien implements IBien {
         this.surencheresEnregistrees.put(utilisateur, montant);
     }
 
-    // Methods
+    @Override
+    public String toString() {
+        SimpleDateFormat dateFormatD = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat dateFormatF = new SimpleDateFormat("dd-MMM-yyyy");
+        dateFormatD.setCalendar(dateD);
+        String dateFormattedD = dateFormatD.format(dateD.getTime());
+
+        dateFormatF.setCalendar(dateF);
+        String dateFormattedF = dateFormatF.format(dateF.getTime());
+
+
+        return "Bien : " + description +
+                "\nmontant de depart : " + montantD +
+                "\nmontant actuelle : " + montant +
+                "\ndate de debut : " + dateFormattedD +
+                "\ndate de fin : " + dateFormattedF ;
+    }
+// Methods
 
     @Override
     public void encherir(double montant) throws EncherirNotPossibleException {

@@ -1,6 +1,6 @@
 package utilisateurs;
 
-import biens.BiensDeApplication;
+import appli.BiensDeApplication;
 import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IBien;
 import encheres.interfaces.IUtilisateur;

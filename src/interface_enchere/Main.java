@@ -19,7 +19,7 @@ public class Main extends Application {
 
         primaryStage.getIcons().add(new Image("ventes-encheres-immobilier.jpg"));
         primaryStage.setTitle("Enchère");
-        Scene scene = new Scene(root, 600, 600, Color.BLACK);
+        Scene scene = new Scene(root, 600, 600);
         String fontSheet = fileToStylesheetString( new File("src/interface_enchere/stylesheet.css") );
 
         scene.getStylesheets().add( fontSheet );
