@@ -335,4 +335,21 @@ public class BienTest {
         assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(vehicule, 512545.0));
     }
 
+    @Test
+    void changerMontantMax() {
+        // Given
+        IsMontantMaxValidVehicule isMontantMax = new IsMontantMaxValidVehicule();
+
+        double pourcentageExpected = isMontantMax.getPourcentageMax();
+
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                isMontantMax);
+
+        // When
+        isMontantMax.setPourcentageMax(1.4);
+        double pourcentageActual = isMontantMax.getPourcentageMax();
+
+        // Then
+        assertNotEquals(pourcentageExpected, pourcentageActual);
+    }
 }

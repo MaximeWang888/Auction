@@ -25,7 +25,6 @@ public class Enchere {
      * Constructeur de l'enchere à partir d'un bien et d'un montant
      * @param bien le bien que l'on souhaite encherir
      * @param montant le montant de l'encherissement
-     * @param enrichisseur l'enrichisseur
      * @throws EncherirNotPossibleException l'erreur rejete si l'encherissement est impossible
      */
     public Enchere(IBien bien, double montant) throws EncherirNotPossibleException {

@@ -9,11 +9,20 @@ import encheres.interfaces.ICondition;
  * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
-public class IsMontantMaxValidVehicule implements ICondition {
+public class IsMontantMaxValidVehicule extends AConditionMax {
+    /**
+     * Correspond au pourcentage maximal autorisé pour une enchère.
+     */
+    private double pourcentageMax = 1.2;
 
     @Override
-    public boolean isConditionRespected(IBien bien, double montant) {
-        return montant <= bien.getMontant() * 1.25;
+    public double getPourcentageMax() {
+        return pourcentageMax;
     }
 
+    @Override
+    public void setPourcentageMax(double pourcentageMax) {
+        this.pourcentageMax = pourcentageMax;
+    }
 }
+
