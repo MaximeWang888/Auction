@@ -5,8 +5,8 @@ import encheres.interfaces.ICondition;
 import java.util.List;
 
 /**
- * L'interface d'une fabrique d'une condition.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * L'interface d'une fabrique de plusieurs conditions.
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public interface IFabriqueCondition {

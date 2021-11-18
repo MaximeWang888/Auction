@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * Modelise une utilisateur en general.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public abstract class AUtilisateur implements IUtilisateur {

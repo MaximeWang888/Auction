@@ -1,9 +1,6 @@
 package fabriques;
 
 import biens.ABien;
-import conditions.IsMontantMinValidHabitation;
-import conditions.IsMontantMinValidVehicule;
-import conditions.IsPeriodeValid;
 import encheres.interfaces.ICondition;
 import encheres.interfaces.fabriques.IFabriqueCondition;
 
@@ -12,8 +9,8 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Modelise une fabrique d'une condition.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * Modelise une fabrique de plusieurs conditions.
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class FabriqueCondition implements IFabriqueCondition {
@@ -27,10 +24,7 @@ public class FabriqueCondition implements IFabriqueCondition {
 
         switch (type) {
 
-            case "habitation": {
-                ABien.setConditions(conditions);
-                return conditions;
-            }
+            case "habitation":
             case "vehicule" : {
                 ABien.setConditions(conditions);
                 return conditions;
@@ -41,6 +35,11 @@ public class FabriqueCondition implements IFabriqueCondition {
         }
     }
 
+    /**
+     * Permet de recuperer les attributs donc les conditions
+     * @param attributs les attributs correspondant aux conditions
+     * @return la liste de conditions passe en parametre
+     */
     private List<ICondition> getAttributs(ICondition... attributs) {
         List<ICondition> list = new ArrayList<>();
         for (ICondition attribut : attributs) {

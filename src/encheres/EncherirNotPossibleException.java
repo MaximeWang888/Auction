@@ -2,7 +2,7 @@ package encheres;
 
 /**
  * L'erreur envoye lorsque l'encherissement d'un bien est impossible.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class EncherirNotPossibleException extends Exception{

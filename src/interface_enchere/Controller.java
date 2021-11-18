@@ -1,26 +1,23 @@
 package interface_enchere;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import appli.Application;
-import appli.BiensDeApplication;
-import biens.Habitation;
 import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IBien;
-import fraisGestion.FraisGestion10et5;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
+
+/**
+ * Le controller de notre interface graphique d'enchere.
+ * @author  Martin-Dipp Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class Controller implements Initializable {
 
     @FXML

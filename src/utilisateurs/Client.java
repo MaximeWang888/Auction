@@ -4,7 +4,7 @@ import encheres.interfaces.IBien;
 
 /**
  * Modelise un client.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class Client extends AUtilisateur {

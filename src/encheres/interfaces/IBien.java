@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 /**
  * L'interface d'un bien en general.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public interface IBien {
@@ -51,7 +51,6 @@ public interface IBien {
     /**
      * Permet d'encherir un bien
      * @param montant le montant de l'encherissement
-     * @param encherisseur la personne qui encherit sur ce bien
      * @throws EncherirNotPossibleException une erreur lorsque l'encherissement est impossible
      */
     void encherir(double montant) throws EncherirNotPossibleException;

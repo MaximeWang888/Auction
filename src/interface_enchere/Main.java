@@ -5,12 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.MalformedURLException;
 
+
+/**
+ * La classe main qui lance l'application.
+ * @author  Martin-Dipp Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class Main extends Application {
 
     @Override

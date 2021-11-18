@@ -6,7 +6,7 @@ import java.util.Calendar;
 
 /**
  * Modélise un vehicule.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class Vehicule extends ABien {

@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * Modélise un bien en general.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public abstract class ABien implements IBien {
@@ -61,22 +61,6 @@ public abstract class ABien implements IBien {
     private static List<ICondition> conditions;
 
     /**
-     * Permet de connaître les conditions qu'un bien doit valider pour etre surrencherit
-     * @return la liste des conditions qu'un bien doit valider
-     */
-    public static List<ICondition> getConditions() {
-        return conditions;
-    }
-
-    /**
-     * Permet de mettre a jour les conditions qu'un bien doit faire valider avant d'etre encherit
-     * @param conditions la liste des conditions que devra suivre le bien pour etre validé
-     */
-    public static void setConditions(List<ICondition> conditions) {
-        ABien.conditions = conditions;
-    }
-
-    /**
      * Constructeur du bien
      * @param description la description du bien
      * @param montantD le montant depart du bien
@@ -96,6 +80,14 @@ public abstract class ABien implements IBien {
 
 
     // Getters
+
+    /**
+     * Permet de connaître les conditions qu'un bien doit valider pour etre surrencherit
+     * @return la liste des conditions qu'un bien doit valider
+     */
+    public static List<ICondition> getConditions() {
+        return conditions;
+    }
 
     @Override
     public double getMontant() {
@@ -128,8 +120,16 @@ public abstract class ABien implements IBien {
     }
 
 
-
     // Setters
+
+
+    /**
+     * Permet de mettre a jour les conditions qu'un bien doit faire valider avant d'etre encherit
+     * @param conditions la liste des conditions que devra suivre le bien pour etre validé
+     */
+    public static void setConditions(List<ICondition> conditions) {
+        ABien.conditions = conditions;
+    }
 
     @Override
     public void setMontant(double montant) {
@@ -163,6 +163,8 @@ public abstract class ABien implements IBien {
                 "\ndate de debut : " + dateFormattedD +
                 "\ndate de fin : " + dateFormattedF ;
     }
+
+
 // Methods
 
     @Override

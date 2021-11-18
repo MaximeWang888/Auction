@@ -9,7 +9,7 @@ import java.util.Locale;
 
 /**
  * Modelise une fabrique d'une regle de frais de gestion.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class FabriqueFraisGestion implements IFabriqueFraisGestion {
@@ -25,7 +25,7 @@ public class FabriqueFraisGestion implements IFabriqueFraisGestion {
             case "fraisgestion10et5": {
                 return new FraisGestion10et5();
             }
-            case "fraisgestion20" : {
+            case "fraisgestion500et1000" : {
                 return new FraisGestion500et1000();
             }
             default:

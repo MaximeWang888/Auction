@@ -2,6 +2,11 @@ package encheres.interfaces.fabriques;
 
 import encheres.interfaces.IUtilisateur;
 
+/**
+ * L'interface d'une fabrique d'un utilisateur.
+ * @author  Martin-Dipp Daryl, Maxime Wang
+ * @version 1.0
+ */
 public interface IFabriqueUtilisateur {
 
     /**

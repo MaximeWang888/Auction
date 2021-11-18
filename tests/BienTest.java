@@ -1,10 +1,10 @@
 import appli.BiensDeApplication;
+import conditions.IsMontantMaxValidVehicule;
 import conditions.IsMontantMinValidHabitation;
 import conditions.IsMontantMinValidVehicule;
 import conditions.IsPeriodeValid;
 import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IBien;
-import encheres.interfaces.ICondition;
 import encheres.interfaces.IFraisGestion;
 import encheres.interfaces.IUtilisateur;
 import encheres.interfaces.fabriques.IFabriqueBien;
@@ -16,6 +16,7 @@ import fabriques.FabriqueCondition;
 import fabriques.FabriqueFraisGestion;
 import fabriques.FabriqueUtilisateur;
 import fraisGestion.FraisGestion10et5;
+import fraisGestion.FraisGestion500et1000;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,11 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Les tests sur notre application d'enchere.
+ * @author  Martin-Dipp Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class BienTest {
 
     private IFabriqueBien fabriqueBien;
@@ -37,7 +43,6 @@ public class BienTest {
     private IUtilisateur e;
     private IBien habitation;
     private IBien vehicule;
-    private static List<ICondition> conditions = new ArrayList<>();
 
     @BeforeEach
     void initialisationDonnee() {
@@ -92,8 +97,7 @@ public class BienTest {
     @Test
     void surrencherirHabitationMontantEtPeriodeConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
-                new IsPeriodeValid());
+        fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(), new IsPeriodeValid());
 
         // When
         assertDoesNotThrow(() -> e.surencherir(habitation, 300000.0));
@@ -104,8 +108,7 @@ public class BienTest {
         // Given
         dateF = new GregorianCalendar(2021, Calendar.NOVEMBER, 1);
         IBien habitation2;
-        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
-                new IsPeriodeValid());
+        fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(), new IsPeriodeValid());
 
         // When : changing the end date
         habitation2 = e.inscrireBien("habitation",
@@ -122,8 +125,7 @@ public class BienTest {
     @Test
     void surrencherirHabitationMontantPasConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
-                new IsPeriodeValid());
+        fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(), new IsPeriodeValid());
 
         // When
         assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(habitation, 200000.0));
@@ -132,8 +134,7 @@ public class BienTest {
     @Test
     void surrencherirVehiculeMontantEtPeriodeConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("vehicule",
-                new IsMontantMinValidVehicule(), new IsPeriodeValid());
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid());
 
         // When
         assertDoesNotThrow(()->e.surencherir(vehicule, 60000.0));
@@ -144,8 +145,7 @@ public class BienTest {
         // Given
         dateF = new GregorianCalendar(2021, Calendar.NOVEMBER, 1);
         IBien vehicule2;
-        conditions = fabriqueCondition.fabriqueCondition("vehicule",
-                new IsMontantMinValidVehicule(), new IsPeriodeValid());
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid());
 
         // When : changing the end date
         vehicule2 = fabriqueBien.fabriqueBien("vehicule",
@@ -162,26 +162,10 @@ public class BienTest {
     @Test
     void surrencherirVehiculeMontantPasConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("vehicule",
-                new IsMontantMinValidVehicule(), new IsPeriodeValid());
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid());
 
         // Then
         assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(vehicule, 45000.0));
-    }
-
-    @Test
-    void consulterFraisDeGestionDunBienVendu() throws EncherirNotPossibleException {
-        // Given
-        double expectedFraisGestion = 30000.0; // 10 % pour un bien non vendu
-        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
-                new IsPeriodeValid());
-
-        // When
-        c.surencherir(habitation, 300000.0);
-        double actualFraisGestion = r.consulterFraisGestion(habitation);
-
-        // Then
-        assertEquals(expectedFraisGestion, actualFraisGestion);
     }
 
     @Test
@@ -248,8 +232,7 @@ public class BienTest {
         IUtilisateur c1 = fabriqueUtilisateur.fabriqueUtilisateur("client", "Bill Gates");
         HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
         expectedSEnregistrer.put(c1, 300000.0); expectedSEnregistrer.put(c1, 300001.0);
-        conditions = fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(),
-                new IsPeriodeValid());
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid());
 
         // When
         c1.surencherir(vehicule, 300000.0);
@@ -260,5 +243,96 @@ public class BienTest {
         assertEquals(expectedSEnregistrer, actualSEnregistrer);
     }
 
+    @Test
+    void consulterFraisDeGestionDuneHabitation() {
+        // Given
+        double expectedFraisGestion = 1000.0;
+        habitation.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(habitation);
+
+        // Then
+        assertEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void consulterMauvaisFraisDeGestionDuneHabitation() {
+        // Given
+        double expectedFraisGestion = 100.0;
+        habitation.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(habitation);
+
+        // Then
+        assertNotEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void consulterFraisDeGestionDunVehicule() {
+        // Given
+        double expectedFraisGestion = 500.0;
+        vehicule.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(vehicule);
+
+        // Then
+        assertEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void consulterMauvaisFraisDeGestionDunVehicule() {
+        // Given
+        double expectedFraisGestion = 50.0;
+        vehicule.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(vehicule);
+
+        // Then
+        assertNotEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void surrencherirHabitationMontantMaxConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertDoesNotThrow(() -> e.surencherir(habitation, 300000.0));
+    }
+
+    @Test
+    void surrencherirHabitationMontantMaxPasConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(habitation, 512545.0));
+    }
+
+    @Test
+    void surrencherirVehiculeMontantMaxConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertDoesNotThrow(() -> e.surencherir(vehicule, 55000.0));
+    }
+
+    @Test
+    void surrencherirVehiculeMontantMaxPasConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(vehicule, 512545.0));
+    }
 
 }

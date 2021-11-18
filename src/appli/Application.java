@@ -4,19 +4,17 @@ import biens.Habitation;
 import conditions.IsMontantMinValidVehicule;
 import conditions.IsPeriodeValid;
 import encheres.interfaces.IBien;
-import encheres.interfaces.ICondition;
 import encheres.interfaces.fabriques.IFabriqueCondition;
 import fabriques.FabriqueCondition;
 import fraisGestion.FraisGestion10et5;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
  * Modélise l'application lancant une session d'enchere.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class Application {

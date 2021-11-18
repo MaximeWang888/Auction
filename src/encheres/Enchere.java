@@ -6,7 +6,7 @@ import encheres.interfaces.ICondition;
 
 /**
  * Modelise une enchere d'un bien.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class Enchere {

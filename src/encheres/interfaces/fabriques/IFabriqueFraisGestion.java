@@ -4,7 +4,7 @@ import encheres.interfaces.IFraisGestion;
 
 /**
  * L'interface d'une fabrique d'un frais de gestion.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public interface IFabriqueFraisGestion {

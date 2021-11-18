@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Modélise la liste des biens de notre application d'enchere.
- * @author  Martin-Deep Daryl, Maxime Wang
+ * @author  Martin-Dipp Daryl, Maxime Wang
  * @version 1.0
  */
 public class BiensDeApplication {

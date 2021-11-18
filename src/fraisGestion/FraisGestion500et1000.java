@@ -5,6 +5,11 @@ import biens.Vehicule;
 import encheres.interfaces.IBien;
 import encheres.interfaces.IFraisGestion;
 
+/**
+ * Modelise une regle de frais de gestion concrete.
+ * @author  Martin-Dipp Daryl, Maxime Wang
+ * @version 1.0
+ */
 public class FraisGestion500et1000 implements IFraisGestion {
 
     @Override
