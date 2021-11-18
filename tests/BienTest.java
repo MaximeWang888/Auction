@@ -1,4 +1,8 @@
 import biens.BiensDeApplication;
+import conditions.IsMontantMaxValidVehicule;
+import conditions.IsMontantMinValidHabitation;
+import conditions.IsMontantMinValidVehicule;
+import conditions.IsPeriodeValid;
 import encheres.EncherirNotPossibleException;
 import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
@@ -89,7 +93,8 @@ public class BienTest {
     @Test
     void surrencherirHabitationMontantEtPeriodeConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("habitation");
+        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
+                new IsPeriodeValid());
 
         // When
         assertDoesNotThrow(() -> e.surencherir(habitation, 300000.0));
@@ -100,7 +105,8 @@ public class BienTest {
         // Given
         dateF = new GregorianCalendar(2021, Calendar.NOVEMBER, 1);
         IBien habitation2;
-        conditions = fabriqueCondition.fabriqueCondition("habitation");
+        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
+                new IsPeriodeValid());
 
         // When : changing the end date
         habitation2 = e.inscrireBien("habitation",
@@ -117,7 +123,8 @@ public class BienTest {
     @Test
     void surrencherirHabitationMontantPasConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("habitation");
+        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
+                new IsPeriodeValid());
 
         // When
         assertThrows(EncherirNotPossibleException.class, () -> e.surencherir(habitation, 200000.0));
@@ -126,7 +133,8 @@ public class BienTest {
     @Test
     void surrencherirVehiculeMontantEtPeriodeConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("vehicule");
+        conditions = fabriqueCondition.fabriqueCondition("vehicule",
+                new IsMontantMinValidVehicule(), new IsPeriodeValid());
 
         // When
         assertDoesNotThrow(()->e.surencherir(vehicule, 60000.0));
@@ -137,7 +145,8 @@ public class BienTest {
         // Given
         dateF = new GregorianCalendar(2021, Calendar.NOVEMBER, 1);
         IBien vehicule2;
-        conditions = fabriqueCondition.fabriqueCondition("vehicule");
+        conditions = fabriqueCondition.fabriqueCondition("vehicule",
+                new IsMontantMinValidVehicule(), new IsPeriodeValid());
 
         // When : changing the end date
         vehicule2 = fabriqueBien.fabriqueBien("vehicule",
@@ -154,7 +163,8 @@ public class BienTest {
     @Test
     void surrencherirVehiculeMontantPasConforme() {
         // Given
-        conditions = fabriqueCondition.fabriqueCondition("vehicule");
+        conditions = fabriqueCondition.fabriqueCondition("vehicule",
+                new IsMontantMinValidVehicule(), new IsPeriodeValid());
 
         // Then
         assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(vehicule, 45000.0));
@@ -164,7 +174,8 @@ public class BienTest {
     void consulterFraisDeGestionDunBienVendu() throws EncherirNotPossibleException {
         // Given
         double expectedFraisGestion = 30000.0; // 10 % pour un bien non vendu
-        conditions = fabriqueCondition.fabriqueCondition("habitation");
+        conditions = fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidHabitation(),
+                new IsPeriodeValid());
 
         // When
         c.surencherir(habitation, 300000.0);
@@ -238,7 +249,8 @@ public class BienTest {
         IUtilisateur c1 = fabriqueUtilisateur.fabriqueUtilisateur("client", "Bill Gates");
         HashMap<IUtilisateur, Double> expectedSEnregistrer = new HashMap<>();
         expectedSEnregistrer.put(c1, 300000.0); expectedSEnregistrer.put(c1, 300001.0);
-        conditions = fabriqueCondition.fabriqueCondition("vehicule");
+        conditions = fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(),
+                new IsPeriodeValid());
 
         // When
         c1.surencherir(vehicule, 300000.0);

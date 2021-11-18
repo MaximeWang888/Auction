@@ -19,23 +19,19 @@ import java.util.Locale;
 public class FabriqueCondition implements IFabriqueCondition {
 
     @Override
-    public List<ICondition> fabriqueCondition(String type) {
+    public List<ICondition> fabriqueCondition(String type, ICondition... attributs) {
+
+        List<ICondition> conditions = getAttributs(attributs);
 
         type.toLowerCase(Locale.ROOT);
-
-        List<ICondition> conditions = new ArrayList<>();
 
         switch (type) {
 
             case "habitation": {
-                conditions.add(new IsMontantMinValidHabitation());
-                conditions.add(new IsPeriodeValid());
                 ABien.setConditions(conditions);
                 return conditions;
             }
             case "vehicule" : {
-                conditions.add(new IsMontantMinValidVehicule());
-                conditions.add(new IsPeriodeValid());
                 ABien.setConditions(conditions);
                 return conditions;
             }
@@ -43,6 +39,14 @@ public class FabriqueCondition implements IFabriqueCondition {
                 throw new IllegalArgumentException("Type n'est pas defini");
 
         }
+    }
+
+    private List<ICondition> getAttributs(ICondition... attributs) {
+        List<ICondition> list = new ArrayList<>();
+        for (ICondition attribut : attributs) {
+            list.add(attribut);
+        }
+        return list;
     }
 
 }

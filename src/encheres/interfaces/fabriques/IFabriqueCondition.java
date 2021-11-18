@@ -16,6 +16,6 @@ public interface IFabriqueCondition {
      * @param type le type de condition
      * @return la condition souhaitant etre fabrique
      */
-    List<ICondition> fabriqueCondition(String type);
+    List<ICondition> fabriqueCondition(String type, ICondition... attributs);
 
 }
