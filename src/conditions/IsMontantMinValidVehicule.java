@@ -3,7 +3,7 @@ package conditions;
 import encheres.interfaces.IBien;
 import encheres.interfaces.ICondition;
 
-public class IsMontantValidVehicule implements ICondition {
+public class IsMontantMinValidVehicule implements ICondition {
 
     @Override
     public boolean isConditionRespected(IBien bien, double montant) {

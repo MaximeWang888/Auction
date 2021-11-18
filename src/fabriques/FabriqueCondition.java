@@ -1,8 +1,8 @@
 package fabriques;
 
 import biens.ABien;
-import conditions.IsMontantValidHabitation;
-import conditions.IsMontantValidVehicule;
+import conditions.IsMontantMinValidHabitation;
+import conditions.IsMontantMinValidVehicule;
 import conditions.IsPeriodeValid;
 import encheres.interfaces.ICondition;
 import encheres.interfaces.fabriques.IFabriqueCondition;
@@ -28,13 +28,13 @@ public class FabriqueCondition implements IFabriqueCondition {
         switch (type) {
 
             case "habitation": {
-                conditions.add(new IsMontantValidHabitation());
+                conditions.add(new IsMontantMinValidHabitation());
                 conditions.add(new IsPeriodeValid());
                 ABien.setConditions(conditions);
                 return conditions;
             }
             case "vehicule" : {
-                conditions.add(new IsMontantValidVehicule());
+                conditions.add(new IsMontantMinValidVehicule());
                 conditions.add(new IsPeriodeValid());
                 ABien.setConditions(conditions);
                 return conditions;
