@@ -243,5 +243,114 @@ public class BienTest {
         assertEquals(expectedSEnregistrer, actualSEnregistrer);
     }
 
+    @Test
+    void consulterFraisDeGestionDuneHabitation() {
+        // Given
+        double expectedFraisGestion = 1000.0;
+        habitation.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(habitation);
+
+        // Then
+        assertEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void consulterMauvaisFraisDeGestionDuneHabitation() {
+        // Given
+        double expectedFraisGestion = 100.0;
+        habitation.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(habitation);
+
+        // Then
+        assertNotEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void consulterFraisDeGestionDunVehicule() {
+        // Given
+        double expectedFraisGestion = 500.0;
+        vehicule.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(vehicule);
+
+        // Then
+        assertEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void consulterMauvaisFraisDeGestionDunVehicule() {
+        // Given
+        double expectedFraisGestion = 50.0;
+        vehicule.setFraisGestion(new FraisGestion500et1000());
+
+        // When
+        double actualFraisGestion = r.consulterFraisGestion(vehicule);
+
+        // Then
+        assertNotEquals(expectedFraisGestion, actualFraisGestion);
+    }
+
+    @Test
+    void surrencherirHabitationMontantMaxConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertDoesNotThrow(() -> e.surencherir(habitation, 300000.0));
+    }
+
+    @Test
+    void surrencherirHabitationMontantMaxPasConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("habitation", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(habitation, 512545.0));
+    }
+
+    @Test
+    void surrencherirVehiculeMontantMaxConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertDoesNotThrow(() -> e.surencherir(vehicule, 55000.0));
+    }
+
+    @Test
+    void surrencherirVehiculeMontantMaxPasConforme() {
+        // Given
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                new IsMontantMaxValidVehicule());
+
+        // Then
+        assertThrows(EncherirNotPossibleException.class, ()-> e.surencherir(vehicule, 512545.0));
+    }
+
+    @Test
+    void changerMontantMax() {
+        // Given
+        IsMontantMaxValidVehicule isMontantMax = new IsMontantMaxValidVehicule();
+
+        double pourcentageExpected = isMontantMax.getPourcentageMax();
+
+        fabriqueCondition.fabriqueCondition("vehicule", new IsMontantMinValidVehicule(), new IsPeriodeValid(),
+                isMontantMax);
+
+        // When
+        isMontantMax.setPourcentageMax(1.4);
+        double pourcentageActual = isMontantMax.getPourcentageMax();
+
+        // Then
+        assertNotEquals(pourcentageExpected, pourcentageActual);
+    }
 
 }
