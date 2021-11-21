@@ -13,6 +13,12 @@ import java.util.HashMap;
 public interface IBien {
 
     /**
+     * Permet de connaître la description du bien
+     * @return la description du bien
+     */
+    String getDescription();
+
+    /**
      * Permet de connaître le bien
      * @return le bien
      */

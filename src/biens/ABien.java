@@ -79,14 +79,19 @@ public abstract class ABien implements IBien {
     }
 
 
-    // Getters
 
+    // Getters
     /**
      * Permet de connaître les conditions qu'un bien doit valider pour etre surrencherit
      * @return la liste des conditions qu'un bien doit valider
      */
     public static List<ICondition> getConditions() {
         return conditions;
+    }
+
+    @Override
+    public String getDescription() {
+        return description;
     }
 
     @Override
